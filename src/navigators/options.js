@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {ROUTES} from 'src/constants';
 
@@ -16,7 +15,6 @@ export const LeftButton = () => {
         source={require('src/assets/images/array.png')}
         style={styles.imgL}
       />
-      {/* <Icon name="chevron-left" size={30} color={COLORS.GREY_DARK} /> */}
     </TouchableOpacity>
   );
 };

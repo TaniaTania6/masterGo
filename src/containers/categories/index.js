@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {TextComponent, Button, Input, HalfButtons} from 'src/components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {COLORS} from 'src/constants';
 
@@ -36,7 +35,7 @@ const renderDarkBtn = (item, index) => (
     <View style={styles.contentBlock}>
       <TextComponent content={item.content1} extraStyles={styles.greyText} />
       <Button style={styles.arrayBtn}>
-        <Icon name="chevron-right" size={25} color={COLORS.GREY_DARK} />
+        <Image source={require('src/assets/images/arrow-right.png')}/>
       </Button>
     </View>
   </Button>
