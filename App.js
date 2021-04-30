@@ -15,11 +15,7 @@ import {COLORS} from 'src/constants';
 const App = () => {
   return (
     <SafeAreaProvider>
-      <StatusBar
-        // barStyle="light-content"
-        backgroundColor={COLORS.PRIMARY}
-        translucent
-      />
+      <StatusBar backgroundColor={COLORS.PRIMARY} translucent />
       <RootNavigator />
     </SafeAreaProvider>
   );

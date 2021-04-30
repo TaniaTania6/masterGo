@@ -37,13 +37,13 @@ export const SignUp = ({navigation}) => {
         <Text content="or" />
         <View style={styles.btnContainer}>
           <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/1.png')} />
+            <Image source={require('src/assets/images/social/facebook.png')} />
           </Button>
           <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/2.png')} />
+            <Image source={require('src/assets/images/social/twitter.png')} />
           </Button>
           <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/3.png')} />
+            <Image source={require('src/assets/images/social/linkedin.png')} />
           </Button>
         </View>
         <View

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   input: {
-    backgroundColor: COLORS.GREY_INPUT,
+    backgroundColor: COLORS.GREY_LIGHTER,
     width: '100%',
     paddingHorizontal: 16,
     paddingVertical: 14,
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     fontWeight: '400',
     fontFamily: 'B612-Regular',
-    // position: 'relative',
   },
   imageEye: {
     height: 12,

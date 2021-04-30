@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Text, Button, HalfButtons} from 'src/components';
-import {default as Left} from 'src/assets/images/btn-images/tel.svg';
 
 import {COLORS} from 'src/constants';
 
@@ -10,7 +9,7 @@ const btnInfo = [
   {
     content1: 'Phone number',
     content2: '+3746589923',
-    icon: require('src/assets/images/btn-images/tel.png'),
+    icon: require('src/assets/images/btn-images/phone.png'),
   },
   {
     content1: 'Email',
@@ -23,28 +22,26 @@ const btnInfo = [
     icon: require('src/assets/images/btn-images/point.png'),
   },
 ];
-
-const renderDarkBtn = item => {
-  return (
-    <Button style={styles.darkBtn}>
-      {/* <Left width={100} height={100} /> */}
-      <Image source={item.icon} style={styles.btnImg} />
-      <View style={styles.greyLine} />
-      <View style={styles.innerText}>
-        <Text content={item.content1} extraStyles={styles.greyText} />
-        <Text content={item.content2} extraStyles={styles.whiteText} />
-      </View>
-    </Button>
-  );
-};
-
 export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
+  const renderDarkBtn = item => {
+    return (
+      <Button style={styles.darkBtn} key={item.icon}>
+        <Image source={item.icon} style={styles.btnImg} />
+        <View style={styles.greyLine} />
+        <View style={styles.innerText}>
+          <Text content={item.content1} extraStyles={styles.greyText} />
+          <Text content={item.content2} extraStyles={styles.whiteText} />
+        </View>
+      </Button>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.whiteBlock}>
         <Image
-          source={require('src/assets/images/home_profile.png')}
+          source={require('src/assets/images/home-profile.png')}
           style={styles.image}
         />
         <View style={styles.textContainer}>
@@ -80,16 +77,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   greyBlock: {
-    backgroundColor: COLORS.GREY_DARK,
+    backgroundColor: COLORS.GREY_DARKER,
     flex: 1,
     paddingHorizontal: 30,
     justifyContent: 'space-between',
     paddingTop: 40,
   },
   darkBtn: {
-    backgroundColor: COLORS.GREY_DARK,
+    backgroundColor: COLORS.GREY_DARKER,
     borderWidth: 1,
-    borderColor: COLORS.GREY_LIGHT,
+    borderColor: COLORS.GREY_DARK,
     flexDirection: 'row',
     paddingLeft: 25,
     paddingVertical: 17,
@@ -129,7 +126,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.BTN_BORDER,
   },
   greyText: {
-    color: COLORS.GREY_LIGHT,
+    color: COLORS.GREY_DARK,
   },
   whiteText: {
     color: COLORS.WHITE,
@@ -141,7 +138,7 @@ const styles = StyleSheet.create({
   },
   greyLine: {
     width: 1,
-    backgroundColor: COLORS.PAGINATION_POINT_ACTIVE,
+    backgroundColor: COLORS.GREY_LIGHT,
     marginHorizontal: 25,
   },
   innerText: {

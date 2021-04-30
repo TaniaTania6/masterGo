@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.BTN_BORDER,
   },
   greyText: {
-    color: COLORS.GREY_LIGHT,
+    color: COLORS.GREY_DARK,
   },
   whiteText: {
     color: COLORS.WHITE,

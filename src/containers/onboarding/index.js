@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     width: 9,
     height: 9,
     borderRadius: 8,
-    backgroundColor: COLORS.PAGINATION_POINT_ACTIVE,
+    backgroundColor: COLORS.GREY_LIGHT,
   },
   textBtn: {
     color: COLORS.WHITE,

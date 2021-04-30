@@ -13,7 +13,7 @@ export const LeftButton = () => {
       }}>
       <Image
         source={require('src/assets/images/arrow-left.png')}
-        style={styles.imgL}
+        style={styles.left}
       />
     </TouchableOpacity>
   );
@@ -28,17 +28,11 @@ export const RightButton = () => {
       }}>
       <Image
         source={require('src/assets/icons/menu.png')}
-        style={styles.imgR}
+        style={styles.right}
       />
     </TouchableOpacity>
   );
 };
-
-export const RightButtonDISABLED = () => (
-  <TouchableOpacity>
-    <Image source={require('src/assets/icons/menu.png')} style={styles.imgR} />
-  </TouchableOpacity>
-);
 
 export const stylesHeaderText = {
   fontFamily: 'B612-Regular',
@@ -48,10 +42,10 @@ export const stylesHeaderText = {
 };
 
 const styles = StyleSheet.create({
-  imgR: {
+  right: {
     right: 20,
   },
-  imgL: {
+  left: {
     left: 10,
   },
 });

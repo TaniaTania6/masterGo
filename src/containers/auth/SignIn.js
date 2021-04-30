@@ -12,6 +12,9 @@ import {COLORS, ROUTES} from 'src/constants';
 
 export const SignIn = ({navigation}) => {
   const insets = useSafeAreaInsets();
+  const handleNavigate = route => {
+    navigation.navigate(route);
+  };
   return (
     <KeyboardAvoidingView
       style={styles.screen}
@@ -26,20 +29,20 @@ export const SignIn = ({navigation}) => {
         <Text content="Forgot your password?" extraStyles={styles.forgotLine} />
         <Button
           onPress={() => {
-            navigation.navigate(ROUTES.APP);
+            handleNavigate(ROUTES.APP);
           }}>
           <Text content="Login" extraStyles={styles.textBtn} />
         </Button>
         <Text content="or" />
         <View style={styles.btnContainer}>
           <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/1.png')} />
+            <Image source={require('src/assets/images/social/facebook.png')} />
           </Button>
           <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/2.png')} />
+            <Image source={require('src/assets/images/social/twitter.png')} />
           </Button>
           <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/3.png')} />
+            <Image source={require('src/assets/images/social/linkedin.png')} />
           </Button>
         </View>
         <View
@@ -48,7 +51,7 @@ export const SignIn = ({navigation}) => {
           <Button
             style={styles.primaryColor}
             onPress={() => {
-              navigation.navigate(ROUTES.SIGN_UP);
+              handleNavigate(ROUTES.SIGN_UP);
             }}>
             <Text content="Sign Up" extraStyles={styles.orangeText} />
           </Button>

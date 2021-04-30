@@ -7,23 +7,23 @@ import {COLORS} from 'src/constants';
 const btnInfo = [
   {
     content1: 'Furniture works',
-    icon: require('src/assets/images/categories-images/1.png'),
+    icon: require('src/assets/images/categories-images/furniture-icon.png'),
   },
   {
     content1: 'Cleaning services',
-    icon: require('src/assets/images/categories-images/2.png'),
+    icon: require('src/assets/images/categories-images/cleaning-icon.png'),
   },
   {
     content1: 'Equipment repair',
-    icon: require('src/assets/images/categories-images/3.png'),
+    icon: require('src/assets/images/categories-images/equipment-icon.png'),
   },
   {
     content1: 'Courier services',
-    icon: require('src/assets/images/categories-images/4.png'),
+    icon: require('src/assets/images/categories-images/courier-icon.png'),
   },
   {
     content1: 'Interior design',
-    icon: require('src/assets/images/categories-images/5.png'),
+    icon: require('src/assets/images/categories-images/interior-icon.png'),
   },
 ];
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   greyBlock: {
     width: '25%',
-    backgroundColor: COLORS.GREY_INPUT,
+    backgroundColor: COLORS.GREY_LIGHTER,
     padding: 10,
     justifyContent: 'center',
   },

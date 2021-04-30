@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Categories} from 'src/containers';
 import {
-  RightButtonDISABLED,
+  RightButton,
   LeftButton,
   stylesHeaderText,
 } from 'src/navigators/options';
@@ -17,8 +17,8 @@ export const CategoriesNavigator = () => (
     screenOptions={{
       headerStyle: {backgroundColor: COLORS.PRIMARY},
       headerBackImage: LeftButton,
-      headerRight: RightButtonDISABLED,
-      headerTintColor: COLORS.GREY_DARK,
+      headerRight: RightButton,
+      headerTintColor: COLORS.GREY_DARKER,
       headerTitleStyle: stylesHeaderText,
       headerTitleAlign: 'center',
     }}>

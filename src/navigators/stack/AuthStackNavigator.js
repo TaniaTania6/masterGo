@@ -17,7 +17,7 @@ export const AuthStackNavigator = () => (
     screenOptions={{
       headerStyle: {backgroundColor: COLORS.PRIMARY},
       headerLeft: null,
-      headerTintColor: COLORS.GREY_DARK,
+      headerTintColor: COLORS.GREY_DARKER,
       headerTitleStyle: stylesHeaderText,
       headerTitleAlign: 'center',
     }}>

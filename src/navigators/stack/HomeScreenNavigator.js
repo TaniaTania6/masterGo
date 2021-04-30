@@ -1,11 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen} from 'src/containers';
-import {
-  RightButton,
-  LeftButton,
-  stylesHeaderText,
-} from 'src/navigators/options';
+import {RightButton, LeftButton} from 'src/navigators/options';
 
 import {COLORS, ROUTES} from 'src/constants';
 
@@ -18,9 +14,6 @@ export const HomeScreenNavigator = () => (
       headerStyle: {backgroundColor: COLORS.PRIMARY},
       headerBackImage: LeftButton,
       headerRight: RightButton,
-      // headerTintColor: COLORS.GREY_DARK,
-      // headerTitleStyle: stylesHeaderText,
-      // headerTitleAlign: 'center',
     }}>
     <Stack.Screen
       name={ROUTES.HOMESCREEN}

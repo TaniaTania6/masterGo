@@ -16,7 +16,7 @@ export const Text = ({content, extraStyles, bigFormat}) => {
 const styles = StyleSheet.create({
   title: {
     fontFamily: 'Ubuntu-Regular',
-    color: COLORS.GREY_DARK,
+    color: COLORS.GREY_DARKER,
     fontSize: 40,
     fontWeight: '500',
     lineHeight: 45.96,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'B612-Regular',
-    color: COLORS.GREY_LIGHT,
+    color: COLORS.GREY_DARK,
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 22,
