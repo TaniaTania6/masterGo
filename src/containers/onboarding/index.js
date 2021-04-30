@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
-import {
-  ScrollView,
-  View,
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {View, Dimensions, Image, StyleSheet} from 'react-native';
+
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {OnBoardingText, Button} from 'src/components';
-import {COLORS} from 'src/constants';
+import {TextComponent, Button} from 'src/components';
+import {COLORS, ROUTES} from 'src/constants';
 
 const {width: WINDOW_WIDTH} = Dimensions.get('window');
 const {height: WINDOW_HEIGHT} = Dimensions.get('window');
@@ -20,7 +14,7 @@ const AUTOPLAY_DELAY = 3000;
 const slides = [
   {
     source: require('src/assets/images/slide1.png'),
-    title: 'Proven specialists',
+    title: 'Proven\n specialists',
     text: 'We check each specialist before he starts work',
   },
   {
@@ -30,17 +24,17 @@ const slides = [
   },
   {
     source: require('src/assets/images/slide3.png'),
-    title: 'Insured orders',
+    title: 'Insured\n orders',
     text: 'We insure each order for the amount of $500',
   },
   {
     source: require('src/assets/images/slide4.png'),
-    title: 'Create order',
+    title: 'Create\n order',
     text: "It's easy, just click on the plus",
   },
 ];
 
-export const OnboardingOne = () => {
+export const Onboarding = ({navigation}) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeTitle, setActiveTitle] = useState(slides[activeSlide].title);
   const [activeText, setActiveText] = useState(slides[activeSlide].text);
@@ -50,21 +44,15 @@ export const OnboardingOne = () => {
 
   const renderSlide = ({index}) => (
     <View style={styles.slideContainer}>
-      <View key={index} style={{flex: 1}}>
-        <OnBoardingText
-          text={activeTitle}
-          extraStyles={{marginBottom: 60}}
+      <View key={index} style={styles.flexContainer}>
+        <TextComponent
+          content={activeTitle}
+          extraStyles={styles.extraStyles}
           bigFormat
         />
-        <Image
-          source={activeSource}
-          style={{
-            width: 180,
-            height: WINDOW_HEIGHT < 700 ? 250 : 300,
-          }}
-        />
+        <Image source={activeSource} style={styles.image} />
       </View>
-      <OnBoardingText text={activeText} />
+      <TextComponent content={activeText} />
     </View>
   );
 
@@ -77,13 +65,13 @@ export const OnboardingOne = () => {
 
   const handleBtnPress = () => {
     activeSlide === 3
-      ? handlerSnapToItem(0)
+      ? navigation.navigate(ROUTES.AUTH)
       : handlerSnapToItem(activeSlide + 1);
   };
 
   return (
-    <View style={{flex: 1}}>
-      <View style={{flex: 1}}>
+    <View style={styles.mainContainer}>
+      <View style={styles.contentContainer}>
         <Carousel
           data={slides}
           renderItem={renderSlide}
@@ -100,32 +88,46 @@ export const OnboardingOne = () => {
           dotsLength={slides.length}
           activeDotIndex={activeSlide}
           dotStyle={styles.paginationDot}
-          // dotContainerStyle={styles.paginationDotContainer}
-          // containerStyle={styles.paginationContainer}
           inactiveDotOpacity={0.4}
-          // inactiveDotColor={COLORS.TURQUOISE}
           inactiveDotScale={0.7}
         />
       </View>
-      <Button
-        onPress={handleBtnPress}
-        style={{marginBottom: insets.bottom + 20}}>
-        <Text>Next</Text>
-      </Button>
+      {activeSlide === 3 ? (
+        <Button
+          onPress={handleBtnPress}
+          style={[{marginBottom: insets.bottom + 20}, styles.circleBtn]}>
+          <Image
+            source={require('src/assets/images/plus.png')}
+            styles={styles.textBtn}
+          />
+        </Button>
+      ) : (
+        <Button
+          onPress={handleBtnPress}
+          style={{marginBottom: insets.bottom + 20}}>
+          <TextComponent content="Next" extraStyles={styles.textBtn} />
+        </Button>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    paddingHorizontal: 30,
+    marginTop: 60,
+  },
+  flexContainer: {
+    flex: 1,
+  },
   contentContainer: {
-    flexGrow: 1,
-    paddingBottom: 40,
-    // alignItems: 'center'
+    flex: 1,
+    alignItems: 'center',
   },
   slideContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'pink',
     marginHorizontal: 50,
     marginTop: 60,
   },
@@ -134,5 +136,23 @@ const styles = StyleSheet.create({
     height: 9,
     borderRadius: 8,
     backgroundColor: COLORS.PAGINATION_POINT_ACTIVE,
+  },
+  textBtn: {
+    color: COLORS.WHITE,
+    lineHeight: 19,
+  },
+  extraStyles: {
+    marginBottom: 60,
+  },
+  circleBtn: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 180,
+    height: WINDOW_HEIGHT < 700 ? 250 : 300,
   },
 });

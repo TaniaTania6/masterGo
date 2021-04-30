@@ -3,13 +3,13 @@ import {StyleSheet} from 'react-native';
 import TouchableScale from 'react-native-touchable-scale';
 import {COLORS} from 'src/constants';
 
-export const Button = props => {
+export const Button = ({children, onPress, style}) => {
   return (
     <TouchableScale
-      style={[styles.button, props.style]}
-      onPress={props.onPress}
+      style={[styles.button, style]}
+      onPress={onPress}
       activeScale={0.95}>
-      {props.children}
+      {children}
     </TouchableScale>
   );
 };
@@ -18,9 +18,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     backgroundColor: COLORS.TURQUOISE,
-    color: COLORS.WHITE,
-    height: '8%',
-    width: '75%',
+    width: '100%',
     paddingVertical: 20,
   },
 });

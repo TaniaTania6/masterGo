@@ -1,2 +1,4 @@
 export * from './Button';
-export * from './OnBoardingText';
+export * from './HalfButtons';
+export * from './TextComponent';
+export * from './Input';

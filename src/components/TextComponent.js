@@ -2,13 +2,13 @@ import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {COLORS} from 'src/constants';
 
-export const OnBoardingText = ({text, extraStyles, bigFormat}) => {
+export const TextComponent = ({content, extraStyles, bigFormat}) => {
   return (
     <Text
       style={
         bigFormat ? [styles.title, extraStyles] : [styles.text, extraStyles]
       }>
-      {text}
+      {content}
     </Text>
   );
 };
