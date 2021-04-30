@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Image, FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Button, TextComponent} from 'src/components';
+import {Button, Text} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 const items = [
@@ -34,7 +34,7 @@ const renderMenuItem = (onPress, item, activeId) => (
       }>
       <Image source={item.source} style={styles.image} />
     </Button>
-    <TextComponent content={item.content} />
+    <Text content={item.content} />
   </>
 );
 

@@ -7,7 +7,7 @@ import {
   Platform,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Input, Button, TextComponent} from 'src/components';
+import {Input, Button, Text} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 export const SignIn = ({navigation}) => {
@@ -23,17 +23,14 @@ export const SignIn = ({navigation}) => {
         />
         <Input placeholder="Username" />
         <Input placeholder="Password" keyboardType="numeric" icon="eye" />
-        <TextComponent
-          content="Forgot your password?"
-          extraStyles={styles.forgotLine}
-        />
+        <Text content="Forgot your password?" extraStyles={styles.forgotLine} />
         <Button
           onPress={() => {
             navigation.navigate(ROUTES.APP);
           }}>
-          <TextComponent content="Login" extraStyles={styles.textBtn} />
+          <Text content="Login" extraStyles={styles.textBtn} />
         </Button>
-        <TextComponent content="or" />
+        <Text content="or" />
         <View style={styles.btnContainer}>
           <Button style={styles.socialBtn}>
             <Image source={require('src/assets/images/social/1.png')} />
@@ -47,13 +44,13 @@ export const SignIn = ({navigation}) => {
         </View>
         <View
           style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
-          <TextComponent content="Don't have an account?" />
+          <Text content="Don't have an account?" />
           <Button
             style={styles.primaryColor}
             onPress={() => {
               navigation.navigate(ROUTES.SIGN_UP);
             }}>
-            <TextComponent content="Sign" extraStyles={styles.orangeText} />
+            <Text content="Sign Up" extraStyles={styles.orangeText} />
           </Button>
         </View>
       </View>

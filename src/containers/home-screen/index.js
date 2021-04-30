@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {TextComponent, Button, HalfButtons} from 'src/components';
+import {Text, Button, HalfButtons} from 'src/components';
 import {default as Left} from 'src/assets/images/btn-images/tel.svg';
 
 import {COLORS} from 'src/constants';
@@ -31,8 +31,8 @@ const renderDarkBtn = item => {
       <Image source={item.icon} style={styles.btnImg} />
       <View style={styles.greyLine} />
       <View style={styles.innerText}>
-        <TextComponent content={item.content1} extraStyles={styles.greyText} />
-        <TextComponent content={item.content2} extraStyles={styles.whiteText} />
+        <Text content={item.content1} extraStyles={styles.greyText} />
+        <Text content={item.content2} extraStyles={styles.whiteText} />
       </View>
     </Button>
   );
@@ -42,21 +42,21 @@ export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   return (
     <View style={styles.container}>
-      <View style={[styles.whiteBlock, {paddingTop: insets.top + 20}]}>
+      <View style={styles.whiteBlock}>
         <Image
           source={require('src/assets/images/home_profile.png')}
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <TextComponent
+          <Text
             content="Jeremías del Pozo"
             extraStyles={styles.name}
             bigFormat
           />
-          <TextComponent content="New York • ID: 1120611" />
+          <Text content="New York • ID: 1120611" />
         </View>
         <Button style={styles.btnEdit}>
-          <TextComponent content="Edit" extraStyles={styles.orangeText} />
+          <Text content="Edit" extraStyles={styles.orangeText} />
         </Button>
         <HalfButtons content1="About Me" content2="Reviews" />
       </View>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   whiteBlock: {
     backgroundColor: COLORS.PRIMARY,
-    paddingVertical: '15%',
+    marginVertical: 40,
     paddingHorizontal: 30,
     justifyContent: 'space-between',
     flex: 1,

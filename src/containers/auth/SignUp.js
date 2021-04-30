@@ -7,7 +7,7 @@ import {
   Platform,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Input, Button, TextComponent} from 'src/components';
+import {Input, Button, Text} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 export const SignUp = ({navigation}) => {
@@ -32,9 +32,9 @@ export const SignUp = ({navigation}) => {
           onPress={() => {
             navigation.navigate(ROUTES.APP);
           }}>
-          <TextComponent content="Sign Up" extraStyles={styles.textBtn} />
+          <Text content="Sign Up" extraStyles={styles.textBtn} />
         </Button>
-        <TextComponent content="or" />
+        <Text content="or" />
         <View style={styles.btnContainer}>
           <Button style={styles.socialBtn}>
             <Image source={require('src/assets/images/social/1.png')} />
@@ -48,13 +48,13 @@ export const SignUp = ({navigation}) => {
         </View>
         <View
           style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
-          <TextComponent content="Already have an account?" />
+          <Text content="Already have an account?" />
           <Button
             style={styles.primaryColor}
             onPress={() => {
               navigation.navigate(ROUTES.SIGN_IN);
             }}>
-            <TextComponent content="Sign" extraStyles={styles.orangeText} />
+            <Text content="Sign In" extraStyles={styles.orangeText} />
           </Button>
         </View>
       </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 145,
-    width: 100,
+    width: 140,
     marginBottom: 20,
   },
   textBtn: {

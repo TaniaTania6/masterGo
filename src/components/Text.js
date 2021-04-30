@@ -1,15 +1,15 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text as NativeText, StyleSheet} from 'react-native';
 import {COLORS} from 'src/constants';
 
-export const TextComponent = ({content, extraStyles, bigFormat}) => {
+export const Text = ({content, extraStyles, bigFormat}) => {
   return (
-    <Text
+    <NativeText
       style={
         bigFormat ? [styles.title, extraStyles] : [styles.text, extraStyles]
       }>
       {content}
-    </Text>
+    </NativeText>
   );
 };
 

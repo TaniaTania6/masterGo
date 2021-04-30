@@ -3,7 +3,7 @@ import {View, Dimensions, Image, StyleSheet} from 'react-native';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {TextComponent, Button} from 'src/components';
+import {Text, Button} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 const {width: WINDOW_WIDTH} = Dimensions.get('window');
@@ -45,14 +45,14 @@ export const Onboarding = ({navigation}) => {
   const renderSlide = ({index}) => (
     <View style={styles.slideContainer}>
       <View key={index} style={styles.flexContainer}>
-        <TextComponent
+        <Text
           content={activeTitle}
           extraStyles={styles.extraStyles}
           bigFormat
         />
         <Image source={activeSource} style={styles.image} />
       </View>
-      <TextComponent content={activeText} />
+      <Text content={activeText} />
     </View>
   );
 
@@ -105,7 +105,7 @@ export const Onboarding = ({navigation}) => {
         <Button
           onPress={handleBtnPress}
           style={{marginBottom: insets.bottom + 20}}>
-          <TextComponent content="Next" extraStyles={styles.textBtn} />
+          <Text content="Next" extraStyles={styles.textBtn} />
         </Button>
       )}
     </View>

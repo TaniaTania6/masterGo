@@ -12,7 +12,7 @@ export const LeftButton = () => {
         navigation.goBack();
       }}>
       <Image
-        source={require('src/assets/images/array.png')}
+        source={require('src/assets/images/arrow-left.png')}
         style={styles.imgL}
       />
     </TouchableOpacity>

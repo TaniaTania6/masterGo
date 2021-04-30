@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
-import {TextComponent, Button, Input, HalfButtons} from 'src/components';
+import {Text, Button, Input, HalfButtons} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
@@ -33,7 +33,7 @@ const renderDarkBtn = (item, index) => (
       <Image source={item.icon} style={styles.btnImg} />
     </View>
     <View style={styles.contentBlock}>
-      <TextComponent content={item.content1} extraStyles={styles.greyText} />
+      <Text content={item.content1} extraStyles={styles.greyText} />
       <Button style={styles.arrayBtn}>
         <Image source={require('src/assets/images/arrow-right.png')}/>
       </Button>

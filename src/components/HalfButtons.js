@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {TextComponent, Button} from 'src/components';
+import {Text, Button} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
@@ -8,10 +8,10 @@ export const HalfButtons = ({content1, content2}) => {
   return (
     <View style={styles.btnContainer}>
       <Button style={[styles.halfBtn, styles.primaryColor]}>
-        <TextComponent content={content1} extraStyles={styles.greyText} />
+        <Text content={content1} extraStyles={styles.greyText} />
       </Button>
       <Button style={styles.halfBtn}>
-        <TextComponent content={content2} extraStyles={styles.whiteText} />
+        <Text content={content2} extraStyles={styles.whiteText} />
       </Button>
     </View>
   );
