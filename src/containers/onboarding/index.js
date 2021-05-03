@@ -45,11 +45,7 @@ export const Onboarding = ({navigation}) => {
   const renderSlide = ({index}) => (
     <View style={styles.slideContainer}>
       <View key={index} style={styles.flexContainer}>
-        <Text
-          content={activeTitle}
-          extraStyles={styles.extraStyles}
-          bigFormat
-        />
+        <Text content={activeTitle} extraStyles={styles.textStyles} bigFormat />
         <Image source={activeSource} style={styles.image} />
       </View>
       <Text content={activeText} />
@@ -95,18 +91,17 @@ export const Onboarding = ({navigation}) => {
       {activeSlide === 3 ? (
         <Button
           onPress={handleBtnPress}
-          style={[{marginBottom: insets.bottom + 20}, styles.circleBtn]}>
-          <Image
-            source={require('src/assets/images/plus.png')}
-            styles={styles.textBtn}
-          />
-        </Button>
+          extraStyles={{marginBottom: insets.bottom + 20}}
+          theme="circle"
+          icon={require('src/assets/images/plus.png')}
+          iconStyle={styles.plus}
+        />
       ) : (
         <Button
           onPress={handleBtnPress}
-          style={{marginBottom: insets.bottom + 20}}>
-          <Text content="Next" extraStyles={styles.textBtn} />
-        </Button>
+          extraStyles={{marginBottom: insets.bottom + 20}}
+          text="Next"
+        />
       )}
     </View>
   );
@@ -116,10 +111,11 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     paddingHorizontal: 30,
-    marginTop: 60,
+    alignItems: 'center',
   },
   flexContainer: {
     flex: 1,
+    justifyContent: 'center',
   },
   contentContainer: {
     flex: 1,
@@ -137,19 +133,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: COLORS.GREY_LIGHT,
   },
-  textBtn: {
+  plus: {
     color: COLORS.WHITE,
     lineHeight: 19,
   },
-  extraStyles: {
-    marginBottom: 60,
-  },
-  circleBtn: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+  textStyles: {
+    marginBottom: 40,
   },
   image: {
     width: 180,

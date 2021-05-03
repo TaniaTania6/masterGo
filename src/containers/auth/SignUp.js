@@ -31,31 +31,36 @@ export const SignUp = ({navigation}) => {
         <Button
           onPress={() => {
             navigation.navigate(ROUTES.APP);
-          }}>
-          <Text content="Sign Up" extraStyles={styles.textBtn} />
-        </Button>
+          }}
+          text="Sign Up"
+        />
         <Text content="or" />
         <View style={styles.btnContainer}>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/facebook.png')} />
-          </Button>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/twitter.png')} />
-          </Button>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/linkedin.png')} />
-          </Button>
+          <Button
+            theme="social"
+            icon={require('src/assets/images/social/facebook.png')}
+          />
+          <Button
+            theme="social"
+            icon={require('src/assets/images/social/twitter.png')}
+          />
+          <Button
+            theme="social"
+            icon={require('src/assets/images/social/linkedin.png')}
+          />
         </View>
         <View
           style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
           <Text content="Already have an account?" />
           <Button
-            style={styles.primaryColor}
+            theme="noBorder"
+            text="Sign In"
+            extraTextStyles={styles.orangeText}
+            extraStyles={styles.noBorderBtn}
             onPress={() => {
               navigation.navigate(ROUTES.SIGN_IN);
-            }}>
-            <Text content="Sign In" extraStyles={styles.orangeText} />
-          </Button>
+            }}
+          />
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -87,13 +92,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  socialBtn: {
-    backgroundColor: COLORS.PRIMARY,
-    borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
-    width: '32%',
-    alignItems: 'center',
-  },
   choiceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -103,13 +101,7 @@ const styles = StyleSheet.create({
     color: COLORS.ORANGE,
     textDecorationLine: 'underline',
   },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
-    width: 'auto',
+  noBorderBtn: {
     marginLeft: 10,
-  },
-  forgotLine: {
-    alignSelf: 'flex-end',
-    marginBottom: 30,
   },
 });

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Linking,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Input, Button, Text} from 'src/components';
@@ -30,31 +31,39 @@ export const SignIn = ({navigation}) => {
         <Button
           onPress={() => {
             handleNavigate(ROUTES.APP);
-          }}>
-          <Text content="Login" extraStyles={styles.textBtn} />
-        </Button>
+          }}
+          text="Login"
+        />
         <Text content="or" />
         <View style={styles.btnContainer}>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/facebook.png')} />
-          </Button>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/twitter.png')} />
-          </Button>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/linkedin.png')} />
-          </Button>
+          <Button
+            theme="social"
+            icon={require('src/assets/images/social/facebook.png')}
+            onPress={() => {
+              Linking.openURL('https://www.facebook.com/');
+            }}
+          />
+          <Button
+            theme="social"
+            icon={require('src/assets/images/social/twitter.png')}
+          />
+          <Button
+            theme="social"
+            icon={require('src/assets/images/social/linkedin.png')}
+          />
         </View>
         <View
           style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
           <Text content="Don't have an account?" />
           <Button
-            style={styles.primaryColor}
+            theme="noBorder"
+            text="Sign Up"
+            extraTextStyles={styles.orangeText}
+            extraStyles={styles.noBorderBtn}
             onPress={() => {
               handleNavigate(ROUTES.SIGN_UP);
-            }}>
-            <Text content="Sign Up" extraStyles={styles.orangeText} />
-          </Button>
+            }}
+          />
         </View>
       </View>
     </KeyboardAvoidingView>
@@ -86,13 +95,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  socialBtn: {
-    backgroundColor: COLORS.PRIMARY,
-    borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
-    width: '32%',
-    alignItems: 'center',
-  },
   choiceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -102,9 +104,7 @@ const styles = StyleSheet.create({
     color: COLORS.ORANGE,
     textDecorationLine: 'underline',
   },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
-    width: 'auto',
+  noBorderBtn: {
     marginLeft: 10,
   },
   forgotLine: {

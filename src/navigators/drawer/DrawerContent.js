@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Button, Text} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
@@ -35,14 +35,17 @@ export const DrawerContent = () => {
   };
 
   const renderMenuItem = (onPress, item, id) => (
-    <>
+    <View style={styles.itemContainer}>
       <Button
         onPress={() => onPress(item)}
-        style={id === item.id ? [styles.btn, styles.activeBtn] : styles.btn}>
-        <Image source={item.source} style={styles.image} />
-      </Button>
+        extraStyles={
+          id === item.id ? [styles.btn, styles.activeBtn] : styles.btn
+        }
+        iconStyle={styles.image}
+        icon={item.source}
+      />
       <Text content={item.content} />
-    </>
+    </View>
   );
 
   return (
@@ -61,8 +64,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: COLORS.GREY_DARKER,
+  },
+  itemContainer: {
+    alignItems: 'center',
   },
   btn: {
     width: 75,

@@ -1,24 +1,24 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Text, Button, HalfButtons} from 'src/components';
+import {Text, Button} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
 const btnInfo = [
   {
-    content1: 'Phone number',
-    content2: '+3746589923',
+    title: 'Phone number',
+    data: '+3746589923',
     icon: require('src/assets/images/btn-images/phone.png'),
   },
   {
-    content1: 'Email',
-    content2: 'conrad@gmail.com',
+    title: 'Email',
+    data: 'conrad@gmail.com',
     icon: require('src/assets/images/btn-images/email.png'),
   },
   {
-    content1: 'Completed projects',
-    content2: '248',
+    title: 'Completed projects',
+    data: '248',
     icon: require('src/assets/images/btn-images/point.png'),
   },
 ];
@@ -26,14 +26,16 @@ export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const renderDarkBtn = item => {
     return (
-      <Button style={styles.darkBtn} key={item.icon}>
-        <Image source={item.icon} style={styles.btnImg} />
+      <TouchableOpacity style={styles.darkBtn} key={item.icon}>
+        <View style={styles.imageContainer}>
+          <Image source={item.icon} />
+        </View>
         <View style={styles.greyLine} />
         <View style={styles.innerText}>
-          <Text content={item.content1} extraStyles={styles.greyText} />
-          <Text content={item.content2} extraStyles={styles.whiteText} />
+          <Text content={item.title} extraStyles={styles.greyText} />
+          <Text content={item.data} extraStyles={styles.whiteText} />
         </View>
-      </Button>
+      </TouchableOpacity>
     );
   };
 
@@ -52,10 +54,25 @@ export const HomeScreen = () => {
           />
           <Text content="New York • ID: 1120611" />
         </View>
-        <Button style={styles.btnEdit}>
-          <Text content="Edit" extraStyles={styles.orangeText} />
-        </Button>
-        <HalfButtons content1="About Me" content2="Reviews" />
+        <Button
+          theme="noBorder"
+          text="Edit"
+          extraTextStyles={styles.orangeText}
+        />
+
+        <View style={styles.btnContainer}>
+          <Button
+            extraStyles={styles.transparentBtn}
+            extraTextStyles={styles.greyText}
+            text="About Me"
+            theme="small"
+          />
+          <Button
+            extraStyles={styles.turquoiseColor}
+            text="Reviews"
+            theme="small"
+          />
+        </View>
       </View>
       <View style={[styles.greyBlock, {paddingBottom: insets.bottom + 20}]}>
         {btnInfo.map(item => renderDarkBtn(item))}
@@ -69,19 +86,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   whiteBlock: {
+    flex: 1,
     backgroundColor: COLORS.PRIMARY,
-    marginVertical: 40,
+    paddingVertical: 30,
     paddingHorizontal: 30,
     justifyContent: 'space-between',
-    flex: 1,
     alignItems: 'center',
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   greyBlock: {
     backgroundColor: COLORS.GREY_DARKER,
     flex: 1,
     paddingHorizontal: 30,
     justifyContent: 'space-between',
-    paddingTop: 40,
+    paddingTop: 30,
   },
   darkBtn: {
     backgroundColor: COLORS.GREY_DARKER,
@@ -89,7 +111,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.GREY_DARK,
     flexDirection: 'row',
     paddingLeft: 25,
-    paddingVertical: 17,
+    paddingVertical: 15,
   },
   image: {
     width: '35%',
@@ -104,26 +126,9 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     paddingBottom: 5,
   },
-  btnEdit: {
-    backgroundColor: COLORS.PRIMARY,
-    width: 'auto',
-  },
   orangeText: {
     color: COLORS.ORANGE,
     textDecorationLine: 'underline',
-  },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
-  },
-  btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  halfBtn: {
-    width: '48%',
-    borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
   },
   greyText: {
     color: COLORS.GREY_DARK,
@@ -131,10 +136,8 @@ const styles = StyleSheet.create({
   whiteText: {
     color: COLORS.WHITE,
   },
-  btnImg: {
-    width: 17,
-    height: 17,
-    alignSelf: 'center',
+  imageContainer: {
+    justifyContent: 'center',
   },
   greyLine: {
     width: 1,
@@ -143,5 +146,13 @@ const styles = StyleSheet.create({
   },
   innerText: {
     alignItems: 'flex-start',
+  },
+  turquoiseColor: {
+    backgroundColor: COLORS.TURQUOISE,
+  },
+  transparentBtn: {
+    borderWidth: 1,
+    borderColor: COLORS.BTN_BORDER,
+    backgroundColor: 'transparent',
   },
 });

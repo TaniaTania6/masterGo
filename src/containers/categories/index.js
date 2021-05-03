@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
-import {Text, Button, Input, HalfButtons} from 'src/components';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, Button, Input} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
@@ -28,17 +28,19 @@ const btnInfo = [
 ];
 
 const renderDarkBtn = (item, index) => (
-  <Button style={styles.btn} key={index}>
+  <TouchableOpacity style={styles.btn} key={index}>
     <View style={styles.greyBlock}>
       <Image source={item.icon} style={styles.btnImg} />
     </View>
     <View style={styles.contentBlock}>
       <Text content={item.content1} extraStyles={styles.greyText} />
-      <Button style={styles.arrayBtn}>
-        <Image source={require('src/assets/images/arrow-right.png')}/>
-      </Button>
+      <Button
+        theme="noBorder"
+        icon={require('src/assets/images/arrow-right.png')}
+        extraStyles={styles.arrayBtn}
+      />
     </View>
-  </Button>
+  </TouchableOpacity>
 );
 
 export const Categories = () => (
@@ -47,7 +49,15 @@ export const Categories = () => (
     <View style={[styles.categoriesBlock]}>
       {btnInfo.map((item, index) => renderDarkBtn(item, index))}
     </View>
-    <HalfButtons content1="Back" content2="Next" />
+    <View style={styles.btnContainer}>
+      <Button
+        extraStyles={styles.transparentBtn}
+        extraTextStyles={styles.greyText}
+        text="Back"
+        theme="small"
+      />
+      <Button extraStyles={styles.turquoiseColor} text="Next" theme="small" />
+    </View>
   </View>
 );
 
@@ -58,6 +68,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 20,
   },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
   categoriesBlock: {
     marginVertical: 30,
     width: '100%',
@@ -67,7 +82,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
     flexDirection: 'row',
-    paddingVertical: 0,
     marginVertical: 5,
   },
   contentBlock: {
@@ -83,16 +97,24 @@ const styles = StyleSheet.create({
   },
   btnImg: {
     width: 25,
-    height: 25,
+    height: 27,
     alignSelf: 'center',
   },
   greyBlock: {
     width: '25%',
     backgroundColor: COLORS.GREY_LIGHTER,
-    padding: 10,
+    padding: 23,
     justifyContent: 'center',
   },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
+  greyText: {
+    color: COLORS.GREY_DARK,
+  },
+  turquoiseColor: {
+    backgroundColor: COLORS.TURQUOISE,
+  },
+  transparentBtn: {
+    borderWidth: 1,
+    borderColor: COLORS.BTN_BORDER,
+    backgroundColor: 'transparent',
   },
 });
