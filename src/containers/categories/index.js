@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import {Text, Button, Input} from 'src/components';
+import {Text, Button, Input, Row} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
@@ -32,14 +32,14 @@ const renderDarkBtn = (item, index) => (
     <View style={styles.greyBlock}>
       <Image source={item.icon} style={styles.btnImg} />
     </View>
-    <View style={styles.contentBlock}>
+    <Row style={styles.contentBlock}>
       <Text content={item.content1} extraStyles={styles.greyText} />
       <Button
         theme="noBorder"
         icon={require('src/assets/images/arrow-right.png')}
         extraStyles={styles.arrayBtn}
       />
-    </View>
+    </Row>
   </TouchableOpacity>
 );
 
@@ -49,7 +49,7 @@ export const Categories = () => (
     <View style={[styles.categoriesBlock]}>
       {btnInfo.map((item, index) => renderDarkBtn(item, index))}
     </View>
-    <View style={styles.btnContainer}>
+    <Row style={styles.btnContainer}>
       <Button
         extraStyles={styles.transparentBtn}
         extraTextStyles={styles.greyText}
@@ -57,7 +57,7 @@ export const Categories = () => (
         theme="small"
       />
       <Button extraStyles={styles.turquoiseColor} text="Next" theme="small" />
-    </View>
+    </Row>
   </View>
 );
 
@@ -69,8 +69,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     width: '100%',
   },
   categoriesBlock: {
@@ -85,10 +83,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   contentBlock: {
-    flexDirection: 'row',
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'space-between',
     paddingLeft: '5%',
   },
   arrayBtn: {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Text, Button} from 'src/components';
-import {Phone} from 'src/assets/images';
+import {Text, Button, Row} from 'src/components';
+// import {Phone} from 'src/assets/images';
 
 import {COLORS} from 'src/constants';
 
@@ -27,7 +27,7 @@ export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const renderDarkBtn = item => {
     return (
-      <TouchableOpacity style={styles.darkBtn} key={item.icon}>
+      <TouchableOpacity style={styles.darkBtn} key={item.title}>
         <View style={styles.imageContainer}>
           <Image source={item.icon} />
         </View>
@@ -60,8 +60,7 @@ export const HomeScreen = () => {
           text="Edit"
           extraTextStyles={styles.orangeText}
         />
-
-        <View style={styles.btnContainer}>
+        <Row style={styles.btnContainer}>
           <Button
             extraStyles={styles.transparentBtn}
             extraTextStyles={styles.greyText}
@@ -73,7 +72,7 @@ export const HomeScreen = () => {
             text="Reviews"
             theme="small"
           />
-        </View>
+        </Row>
       </View>
       <View style={[styles.greyBlock, {paddingBottom: insets.bottom + 20}]}>
         {btnInfo.map(item => renderDarkBtn(item))}
@@ -95,8 +94,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     width: '100%',
   },
   greyBlock: {

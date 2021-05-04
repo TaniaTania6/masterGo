@@ -8,7 +8,7 @@ import {
   Linking,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Input, Button, Text} from 'src/components';
+import {Input, Button, Text, Row} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 export const SignIn = ({navigation}) => {
@@ -35,7 +35,7 @@ export const SignIn = ({navigation}) => {
           text="Login"
         />
         <Text content="or" />
-        <View style={styles.btnContainer}>
+        <Row style={styles.btnContainer}>
           <Button
             theme="social"
             icon={require('src/assets/images/social/facebook.png')}
@@ -46,13 +46,19 @@ export const SignIn = ({navigation}) => {
           <Button
             theme="social"
             icon={require('src/assets/images/social/twitter.png')}
+            onPress={() => {
+              Linking.openURL('https://www.twitter.com/');
+            }}
           />
           <Button
             theme="social"
             icon={require('src/assets/images/social/linkedin.png')}
+            onPress={() => {
+              Linking.openURL('https://www.linkedin.com/');
+            }}
           />
-        </View>
-        <View
+        </Row>
+        <Row
           style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
           <Text content="Don't have an account?" />
           <Button
@@ -64,7 +70,7 @@ export const SignIn = ({navigation}) => {
               handleNavigate(ROUTES.SIGN_UP);
             }}
           />
-        </View>
+        </Row>
       </View>
     </KeyboardAvoidingView>
   );
@@ -92,12 +98,8 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   choiceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 10,
   },
   orangeText: {
