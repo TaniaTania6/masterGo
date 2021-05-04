@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Text, Button} from 'src/components';
+import {Phone} from 'src/assets/images';
 
 import {COLORS} from 'src/constants';
 
