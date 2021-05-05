@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Image,
@@ -12,9 +12,13 @@ import {Input, Button, Text, Row} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 export const SignIn = ({navigation}) => {
+  const [visiblePassword, setVisiblePassword] = useState(false);
   const insets = useSafeAreaInsets();
   const handleNavigate = route => {
     navigation.navigate(route);
+  };
+  const handlePasswordVisibility = () => {
+    setVisiblePassword(!visiblePassword);
   };
   return (
     <KeyboardAvoidingView
@@ -25,8 +29,15 @@ export const SignIn = ({navigation}) => {
           source={require('src/assets/images/signIn.png')}
           style={styles.image}
         />
-        <Input placeholder="Username" />
-        <Input placeholder="Password" keyboardType="numeric" icon="eye" />
+        <Input placeholder="Username" textContentType="name" />
+        <Input
+          placeholder="Password"
+          keyboardType="number-pad"
+          icon={visiblePassword ? 'eye' : 'eye-closed'}
+          onIconPress={handlePasswordVisibility}
+          secureTextEntry={!visiblePassword}
+          textContentType="password"
+        />
         <Text content="Forgot your password?" extraStyles={styles.forgotLine} />
         <Button
           onPress={() => {

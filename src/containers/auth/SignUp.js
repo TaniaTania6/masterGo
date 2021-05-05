@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Image,
@@ -12,7 +12,11 @@ import {Input, Button, Text, Row} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 export const SignUp = ({navigation}) => {
+  const [visiblePassword, setVisiblePassword] = useState(false);
   const insets = useSafeAreaInsets();
+  const handlePasswordVisibility = () => {
+    setVisiblePassword(!visiblePassword);
+  };
   return (
     <KeyboardAvoidingView
       style={styles.screen}
@@ -23,11 +27,21 @@ export const SignUp = ({navigation}) => {
           style={styles.image}
         />
         <Input placeholder="Enter email" keyboardType="email-address" />
-        <Input placeholder="Enter password" keyboardType="numeric" icon="eye" />
+        <Input
+          placeholder="Enter password"
+          keyboardType="number-pad"
+          icon={visiblePassword ? 'eye' : 'eye-closed'}
+          onIconPress={handlePasswordVisibility}
+          secureTextEntry={!visiblePassword}
+          textContentType="password"
+        />
         <Input
           placeholder="Confirm password"
-          keyboardType="numeric"
-          icon="eye"
+          keyboardType="number-pad"
+          icon={visiblePassword ? 'eye' : 'eye-closed'}
+          onIconPress={handlePasswordVisibility}
+          secureTextEntry={!visiblePassword}
+          textContentType="password"
         />
         <Button
           onPress={() => {

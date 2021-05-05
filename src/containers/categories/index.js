@@ -6,60 +6,64 @@ import {COLORS} from 'src/constants';
 
 const btnInfo = [
   {
-    content1: 'Furniture works',
+    content: 'Furniture works',
     icon: require('src/assets/images/categories-images/furniture-icon.png'),
   },
   {
-    content1: 'Cleaning services',
+    content: 'Cleaning services',
     icon: require('src/assets/images/categories-images/cleaning-icon.png'),
   },
   {
-    content1: 'Equipment repair',
+    content: 'Equipment repair',
     icon: require('src/assets/images/categories-images/equipment-icon.png'),
   },
   {
-    content1: 'Courier services',
+    content: 'Courier services',
     icon: require('src/assets/images/categories-images/courier-icon.png'),
   },
   {
-    content1: 'Interior design',
+    content: 'Interior design',
     icon: require('src/assets/images/categories-images/interior-icon.png'),
   },
 ];
 
-const renderDarkBtn = (item, index) => (
-  <TouchableOpacity style={styles.btn} key={index}>
-    <View style={styles.greyBlock}>
-      <Image source={item.icon} style={styles.btnImg} />
-    </View>
-    <Row style={styles.contentBlock}>
-      <Text content={item.content1} extraStyles={styles.greyText} />
-      <Button
-        theme="noBorder"
-        icon={require('src/assets/images/arrow-right.png')}
-        extraStyles={styles.arrayBtn}
+export const Categories = () => {
+  const renderDarkBtn = (item, index) => (
+    <TouchableOpacity style={styles.btn} key={index}>
+      <View style={styles.greyBlock}>
+        <Image source={item.icon} style={styles.btnImg} />
+      </View>
+      <Row style={styles.contentBlock}>
+        <Text content={item.content} extraStyles={styles.greyText} />
+        <Button
+          theme="noBorder"
+          icon={require('src/assets/images/arrow-right.png')}
+          extraStyles={styles.arrayBtn}
+        />
+      </Row>
+    </TouchableOpacity>
+  );
+  return (
+    <View style={styles.container}>
+      <Input
+        placeholder="Search by category"
+        icon='search'
       />
-    </Row>
-  </TouchableOpacity>
-);
-
-export const Categories = () => (
-  <View style={styles.container}>
-    <Input placeholder="Search by category" />
-    <View style={[styles.categoriesBlock]}>
-      {btnInfo.map((item, index) => renderDarkBtn(item, index))}
+      <View style={[styles.categoriesBlock]}>
+        {btnInfo.map((item, index) => renderDarkBtn(item, index))}
+      </View>
+      <Row style={styles.btnContainer}>
+        <Button
+          extraStyles={styles.transparentBtn}
+          extraTextStyles={styles.greyText}
+          text="Back"
+          theme="small"
+        />
+        <Button extraStyles={styles.turquoiseColor} text="Next" theme="small" />
+      </Row>
     </View>
-    <Row style={styles.btnContainer}>
-      <Button
-        extraStyles={styles.transparentBtn}
-        extraTextStyles={styles.greyText}
-        text="Back"
-        theme="small"
-      />
-      <Button extraStyles={styles.turquoiseColor} text="Next" theme="small" />
-    </Row>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
