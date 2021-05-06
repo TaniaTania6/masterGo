@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
-import {View, Dimensions, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {Text, Button} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
-
-const {width: WINDOW_WIDTH} = Dimensions.get('window');
-const {height: WINDOW_HEIGHT} = Dimensions.get('window');
+import {dimensions} from 'src/styles';
 
 const AUTOPLAY_DELAY = 3000;
 
@@ -71,8 +69,8 @@ export const Onboarding = ({navigation}) => {
         <Carousel
           data={slides}
           renderItem={renderSlide}
-          sliderWidth={WINDOW_WIDTH}
-          itemWidth={WINDOW_WIDTH}
+          sliderWidth={dimensions.windowWidth}
+          itemWidth={dimensions.windowWidth}
           autoplayDelay={AUTOPLAY_DELAY}
           inactiveSlideOpacity={1}
           activeSlideOffset={0}
@@ -142,6 +140,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 180,
-    height: WINDOW_HEIGHT < 700 ? 250 : 300,
+    height: dimensions.windowHeight < 700 ? 250 : 300,
   },
 });

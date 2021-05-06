@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, SafeAreaView, View} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView, View, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Button, Text} from 'src/components';
+import {LeftButton} from 'src/navigators/options';
 import {COLORS, ROUTES} from 'src/constants';
+import {notch} from 'src/styles';
 
 const items = [
   {
@@ -25,9 +27,27 @@ const items = [
   },
 ];
 
+const HEADER_HEIGHT_IOS = 45;
+const HEADER_HEIGHT_ANDROID = 55;
+
 export const DrawerContent = () => {
   const navigation = useNavigation();
   const [activeId, setActiveId] = useState(1);
+
+  const getHeaderHeight = () => {
+    let headerHeightPlatform;
+    let statusBarHeight;
+
+    if (Platform.OS === 'ios') {
+      headerHeightPlatform = HEADER_HEIGHT_IOS;
+    } else {
+      headerHeightPlatform = HEADER_HEIGHT_ANDROID;
+    }
+
+    statusBarHeight = notch.getStatusBarHeight(notch.isIphoneX());
+
+    return headerHeightPlatform + statusBarHeight;
+  };
 
   const handlePress = ({id, route}) => {
     setActiveId(id);
@@ -49,17 +69,28 @@ export const DrawerContent = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={items}
-        renderItem={({item}) => renderMenuItem(handlePress, item, activeId)}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
+    <>
+      <View style={[styles.header, {height: getHeaderHeight()}]}>
+        <LeftButton
+          extraSource={require('src/assets/images/arrow-left-white.png')}
+        />
+      </View>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={items}
+          renderItem={({item}) => renderMenuItem(handlePress, item, activeId)}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  header: {
+    justifyContent: 'flex-end',
+    backgroundColor: COLORS.GREY_DARKER,
+  },
   container: {
     flex: 1,
     flexDirection: 'row',

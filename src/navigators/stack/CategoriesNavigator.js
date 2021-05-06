@@ -16,7 +16,7 @@ export const CategoriesNavigator = () => (
     mode="modal"
     screenOptions={{
       headerStyle: {backgroundColor: COLORS.PRIMARY},
-      headerBackImage: LeftButton,
+      headerLeft: LeftButton,
       headerRight: RightButton,
       headerTintColor: COLORS.GREY_DARKER,
       headerTitleStyle: stylesHeaderText,

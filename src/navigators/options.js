@@ -4,17 +4,21 @@ import {useNavigation} from '@react-navigation/native';
 
 import {ROUTES} from 'src/constants';
 
-export const LeftButton = () => {
+export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.goBack();
       }}>
-      <Image
-        source={require('src/assets/images/arrow-left.png')}
-        style={styles.left}
-      />
+      {extraSource ? (
+        <Image source={extraSource} style={styles.left} />
+      ) : (
+        <Image
+          source={require('src/assets/images/arrow-left.png')}
+          style={styles.left}
+        />
+      )}
     </TouchableOpacity>
   );
 };

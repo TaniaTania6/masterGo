@@ -12,7 +12,7 @@ export const HomeScreenNavigator = () => (
     mode="modal"
     screenOptions={{
       headerStyle: {backgroundColor: COLORS.PRIMARY},
-      headerBackImage: LeftButton,
+      headerLeft: LeftButton,
       headerRight: RightButton,
     }}>
     <Stack.Screen

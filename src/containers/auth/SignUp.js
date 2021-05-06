@@ -7,86 +7,91 @@ import {
   Platform,
   Linking,
 } from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Input, Button, Text, Row} from 'src/components';
+import {
+  Input,
+  Button,
+  Text,
+  Row,
+  KeyboardAwareScrollView,
+} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 
 export const SignUp = ({navigation}) => {
   const [visiblePassword, setVisiblePassword] = useState(false);
-  const insets = useSafeAreaInsets();
   const handlePasswordVisibility = () => {
     setVisiblePassword(!visiblePassword);
   };
   return (
     <KeyboardAvoidingView
       style={styles.screen}
-      behavior={Platform.select({ios: 'padding', default: 'height'})}>
-      <View style={styles.container}>
-        <Image
-          source={require('src/assets/images/signUp.png')}
-          style={styles.image}
-        />
-        <Input placeholder="Enter email" keyboardType="email-address" />
-        <Input
-          placeholder="Enter password"
-          keyboardType="number-pad"
-          icon={visiblePassword ? 'eye' : 'eye-closed'}
-          onIconPress={handlePasswordVisibility}
-          secureTextEntry={!visiblePassword}
-          textContentType="password"
-        />
-        <Input
-          placeholder="Confirm password"
-          keyboardType="number-pad"
-          icon={visiblePassword ? 'eye' : 'eye-closed'}
-          onIconPress={handlePasswordVisibility}
-          secureTextEntry={!visiblePassword}
-          textContentType="password"
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate(ROUTES.APP);
-          }}
-          text="Sign Up"
-        />
-        <Text content="or" />
-        <Row style={styles.btnContainer}>
-          <Button
-            theme="social"
-            icon={require('src/assets/images/social/facebook.png')}
-            onPress={() => {
-              Linking.openURL('https://www.facebook.com/');
-            }}
+      behavior={Platform.select({ios: 'padding', default: undefined})}>
+      <KeyboardAwareScrollView>
+        <View style={styles.container}>
+          <Image
+            source={require('src/assets/images/signUp.png')}
+            style={styles.image}
+          />
+          <Input placeholder="Enter email" keyboardType="email-address" />
+          <Input
+            placeholder="Enter password"
+            keyboardType="number-pad"
+            icon={visiblePassword ? 'eye' : 'eye-closed'}
+            onIconPress={handlePasswordVisibility}
+            secureTextEntry={!visiblePassword}
+            textContentType="password"
+          />
+          <Input
+            placeholder="Confirm password"
+            keyboardType="number-pad"
+            icon={visiblePassword ? 'eye' : 'eye-closed'}
+            onIconPress={handlePasswordVisibility}
+            secureTextEntry={!visiblePassword}
+            textContentType="password"
           />
           <Button
-            theme="social"
-            icon={require('src/assets/images/social/twitter.png')}
             onPress={() => {
-              Linking.openURL('https://www.twitter.com/');
+              navigation.navigate(ROUTES.APP);
             }}
+            text="Sign Up"
           />
-          <Button
-            theme="social"
-            icon={require('src/assets/images/social/linkedin.png')}
-            onPress={() => {
-              Linking.openURL('https://www.linkedin.com/');
-            }}
-          />
-        </Row>
-        <Row
-          style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
-          <Text content="Already have an account?" />
-          <Button
-            theme="noBorder"
-            text="Sign In"
-            extraTextStyles={styles.orangeText}
-            extraStyles={styles.noBorderBtn}
-            onPress={() => {
-              navigation.navigate(ROUTES.SIGN_IN);
-            }}
-          />
-        </Row>
-      </View>
+          <Text content="or" />
+          <Row style={styles.btnContainer}>
+            <Button
+              theme="social"
+              icon={require('src/assets/images/social/facebook.png')}
+              onPress={() => {
+                Linking.openURL('https://www.facebook.com/');
+              }}
+            />
+            <Button
+              theme="social"
+              icon={require('src/assets/images/social/twitter.png')}
+              onPress={() => {
+                Linking.openURL('https://www.twitter.com/');
+              }}
+            />
+            <Button
+              theme="social"
+              icon={require('src/assets/images/social/linkedin.png')}
+              onPress={() => {
+                Linking.openURL('https://www.linkedin.com/');
+              }}
+            />
+          </Row>
+          <Row style={styles.choiceContainer}>
+            <Text content="Already have an account?" />
+            <Button
+              theme="noBorder"
+              text="Sign In"
+              extraTextStyles={styles.orangeText}
+              extraStyles={styles.noBorderBtn}
+              onPress={() => {
+                navigation.navigate(ROUTES.SIGN_IN);
+              }}
+            />
+          </Row>
+        </View>
+      </KeyboardAwareScrollView>
     </KeyboardAvoidingView>
   );
 };
@@ -98,8 +103,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 50,
-    paddingHorizontal: 30,
     justifyContent: 'space-around',
   },
   image: {

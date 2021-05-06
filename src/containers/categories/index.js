@@ -45,10 +45,7 @@ export const Categories = () => {
   );
   return (
     <View style={styles.container}>
-      <Input
-        placeholder="Search by category"
-        icon='search'
-      />
+      <Input placeholder="Search by category" icon="search" />
       <View style={[styles.categoriesBlock]}>
         {btnInfo.map((item, index) => renderDarkBtn(item, index))}
       </View>
