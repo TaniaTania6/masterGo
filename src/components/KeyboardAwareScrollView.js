@@ -5,7 +5,7 @@ import {KeyboardAwareScrollView as KeyboardAwareScrollViewNative} from 'react-na
 import {COLORS} from 'src/constants';
 
 const VERTICAL_PADDING = 40;
-const HORIZONTAL_PADDING = 20;
+const HORIZONTAL_PADDING = 30;
 
 export const KeyboardAwareScrollView = ({children, style}) => {
   const insets = useSafeAreaInsets();

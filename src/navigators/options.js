@@ -7,10 +7,7 @@ import {ROUTES} from 'src/constants';
 export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.goBack();
-      }}>
+    <TouchableOpacity onPress={navigation.goBack}>
       {extraSource ? (
         <Image source={extraSource} style={styles.left} />
       ) : (
@@ -47,9 +44,9 @@ export const stylesHeaderText = {
 
 const styles = StyleSheet.create({
   right: {
-    right: 20,
+    right: 30,
   },
   left: {
-    left: 10,
+    left: 30,
   },
 });

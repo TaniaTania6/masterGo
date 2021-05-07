@@ -8,26 +8,22 @@ import {
 } from 'src/navigators/options';
 
 import {COLORS, ROUTES} from 'src/constants';
+import {toUpperFirstSign} from 'src/utils/formatters';
 
 const Stack = createStackNavigator();
 
 export const CategoriesNavigator = () => (
   <Stack.Navigator
     mode="modal"
-    screenOptions={{
+    screenOptions={({route}) => ({
       headerStyle: {backgroundColor: COLORS.PRIMARY},
       headerLeft: LeftButton,
       headerRight: RightButton,
       headerTintColor: COLORS.GREY_DARKER,
       headerTitleStyle: stylesHeaderText,
       headerTitleAlign: 'center',
-    }}>
-    <Stack.Screen
-      name={ROUTES.CATEGORIES}
-      component={Categories}
-      options={{
-        headerTitle: 'Categories',
-      }}
-    />
+      headerTitle: toUpperFirstSign(route.name),
+    })}>
+    <Stack.Screen name={ROUTES.CATEGORIES} component={Categories} />
   </Stack.Navigator>
 );

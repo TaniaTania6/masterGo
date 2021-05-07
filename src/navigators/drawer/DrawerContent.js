@@ -25,6 +25,12 @@ const items = [
     source: require('src/assets/images/drawer-images/notifications.png'),
     route: ROUTES.NOTIFICATIONS,
   },
+  {
+    id: 4,
+    content: 'Orders in progress',
+    source: require('src/assets/images/drawer-images/orders.png'),
+    route: ROUTES.ORDERS_IN_PROGRESS,
+  },
 ];
 
 const HEADER_HEIGHT_IOS = 45;
