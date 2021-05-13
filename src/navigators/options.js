@@ -8,9 +8,7 @@ import {ROUTES} from 'src/constants';
 export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity
-      onPress={navigation.goBack}
-      style={{height: 50, width: 60}}>
+    <TouchableOpacity onPress={navigation.goBack} style={styles.btn}>
       {extraSource ? (
         <Image source={extraSource} style={styles.left} />
       ) : (
@@ -27,6 +25,7 @@ export const RightButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
+      style={[styles.btn, styles.btnRight]}
       onPress={() => {
         navigation.navigate(ROUTES.APP);
       }}>
@@ -46,8 +45,16 @@ export const stylesHeaderText = {
 };
 
 const styles = StyleSheet.create({
+  btn: {
+    height: 20,
+    width: 40,
+    justifyContent: 'center',
+  },
+  btnRight: {
+    width: 50,
+  },
   right: {
-    right: 30,
+    right: 0,
   },
   left: {
     left: 30,

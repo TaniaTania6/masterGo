@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    // flexDirection: 'row',
+    // alignItems: 'center',
     backgroundColor: COLORS.GREY_DARKER,
   },
   itemContainer: {

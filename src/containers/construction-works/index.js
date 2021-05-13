@@ -29,7 +29,6 @@ const btnInfo = [
   {
     content: 'Architecture',
     active: false,
-    // icon: require('src/assets/images/categories-images/interior-icon.png'),
   },
   {
     content: 'Design',
@@ -39,13 +38,12 @@ const btnInfo = [
 export const ConstructionWorks = () => {
   const [statesArray, setStatesArray] = useState(btnInfo);
 
-  const changeState = (state, index) => {
-    console.log(state, 'state in onPress');
-    const temp = statesArray.map((item, ind) => {
-      let res = ind === index ? {...item, active: !state} : {...item};
-      return res;
+  const changeState = (status, index) => {
+    const changedData = statesArray.map((item, ind) => {
+      let result = ind === index ? {...item, active: !status} : {...item};
+      return result;
     });
-    setStatesArray(temp);
+    setStatesArray(changedData);
   };
   const renderBtn = (item, index) => {
     return (
