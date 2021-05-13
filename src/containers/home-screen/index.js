@@ -67,11 +67,7 @@ export const HomeScreen = () => {
             text="About Me"
             theme="small"
           />
-          <Button
-            extraStyles={styles.turquoiseColor}
-            text="Reviews"
-            theme="small"
-          />
+          <Button text="Reviews" theme="small" />
         </Row>
       </View>
       <View style={[styles.greyBlock, {paddingBottom: insets.bottom + 20}]}>
@@ -144,9 +140,6 @@ const styles = StyleSheet.create({
   },
   innerText: {
     alignItems: 'flex-start',
-  },
-  turquoiseColor: {
-    backgroundColor: COLORS.TURQUOISE,
   },
   transparentBtn: {
     borderWidth: 1,

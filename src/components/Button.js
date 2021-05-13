@@ -1,28 +1,7 @@
 import React, {useMemo} from 'react';
 import {StyleSheet, TouchableOpacity, Image} from 'react-native';
-import TouchableScale from 'react-native-touchable-scale';
 import {Text} from 'src/components';
 import {COLORS} from 'src/constants';
-
-// export const Button = ({children, onPress, style}) => {
-//   return (
-//     <TouchableScale
-//       style={[styles.button, style]}
-//       onPress={onPress}
-//       activeScale={0.95}>
-//       {children}
-//     </TouchableScale>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   button: {
-//     alignSelf: 'center',
-//     backgroundColor: COLORS.TURQUOISE,
-//     width: '100%',
-//     paddingVertical: 20,
-//   },
-// });
 
 export const Button = ({
   children,
@@ -43,7 +22,7 @@ export const Button = ({
       case 'social':
         return [styles.socialBtn, styles.primaryText];
       case 'noBorder':
-        return [styles.noBorderBtn, styles.primaryText];
+        return [styles.noBorderBtn, styles.orangeText];
       case 'small':
         return [styles.smallBtn, styles.primaryText];
       default:
@@ -100,17 +79,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   smallBtn: {
-    // backgroundColor: COLORS.TURQUOISE,
+    backgroundColor: COLORS.TURQUOISE,
     width: '48%',
-    backgroundColor: 'transparent',
   },
   primaryText: {
     color: COLORS.WHITE,
     lineHeight: 19,
-    // width: '100%',
-    // paddingVertical: 20,
   },
   secondaryText: {
     color: COLORS.GREY_DARK,
+  },
+  orangeText: {
+    color: COLORS.ORANGE,
+    textDecorationLine: 'underline',
   },
 });

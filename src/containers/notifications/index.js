@@ -46,7 +46,6 @@ const items = [
 ];
 export const Notifications = () => {
   const [isShowAll, setIsShowAll] = useState(false);
-  console.log('Notifications component!!!');
   const showAllNotifications = () => {
     setIsShowAll(!isShowAll);
   };

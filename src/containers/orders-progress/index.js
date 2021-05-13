@@ -47,11 +47,20 @@ export const OrdersInProgress = () => {
                 key={index}
                 style={
                   index === 2
-                    ? {alignSelf: 'flex-end'}
-                    : {alignSelf: 'flex-start'}
+                    ? {
+                        alignSelf: 'flex-end',
+                        marginBottom: 5,
+                        backgroundColor: 'red',
+                      }
+                    : {
+                        alignSelf: 'flex-start',
+                        marginBottom: 5,
+                        overFlow: 'visible',
+                        backgroundColor: 'green',
+                      }
                 }>
                 <Image source={item.icon} />
-                <Text content={item.name} />
+                <Text content={item.name} extraStyles={styles.title} />
                 <Text content={item.price} />
               </View>
             ))}
@@ -65,11 +74,7 @@ export const OrdersInProgress = () => {
           text="Archive"
           theme="small"
         />
-        <Button
-          extraStyles={styles.turquoiseColor}
-          text="Reviews"
-          theme="small"
-        />
+        <Button text="Reviews" theme="small" />
       </Row>
     </>
   );
@@ -79,9 +84,6 @@ const styles = StyleSheet.create({
   container: {
     flexWrap: 'wrap',
   },
-  turquoiseColor: {
-    backgroundColor: COLORS.TURQUOISE,
-  },
   transparentBtn: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
@@ -89,5 +91,11 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     marginHorizontal: '8%',
+  },
+  greyText: {
+    color: COLORS.GREY_DARK,
+  },
+  title: {
+    paddingVertical: 5,
   },
 });

@@ -1,6 +1,12 @@
 import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import {Text, Button, Input, Row} from 'src/components';
+import {
+  Text,
+  Button,
+  Input,
+  Row,
+  KeyboardAwareScrollView,
+} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
@@ -36,7 +42,6 @@ export const Categories = () => {
       <Row style={styles.contentBlock}>
         <Text content={item.content} extraStyles={styles.greyText} />
         <Button
-          theme="noBorder"
           icon={require('src/assets/images/arrow-right.png')}
           extraStyles={styles.arrayBtn}
         />
@@ -44,9 +49,9 @@ export const Categories = () => {
     </TouchableOpacity>
   );
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView>
       <Input placeholder="Search by category" icon="search" />
-      <View style={[styles.categoriesBlock]}>
+      <View style={styles.categoriesBlock}>
         {btnInfo.map((item, index) => renderDarkBtn(item, index))}
       </View>
       <Row style={styles.btnContainer}>
@@ -56,19 +61,13 @@ export const Categories = () => {
           text="Back"
           theme="small"
         />
-        <Button extraStyles={styles.turquoiseColor} text="Next" theme="small" />
+        <Button text="Next" theme="small" />
       </Row>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 30,
-    justifyContent: 'center',
-    paddingTop: 20,
-  },
   btnContainer: {
     width: '100%',
   },
@@ -104,9 +103,6 @@ const styles = StyleSheet.create({
   },
   greyText: {
     color: COLORS.GREY_DARK,
-  },
-  turquoiseColor: {
-    backgroundColor: COLORS.TURQUOISE,
   },
   transparentBtn: {
     borderWidth: 1,

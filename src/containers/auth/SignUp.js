@@ -83,7 +83,6 @@ export const SignUp = ({navigation}) => {
             <Button
               theme="noBorder"
               text="Sign In"
-              extraTextStyles={styles.orangeText}
               extraStyles={styles.noBorderBtn}
               onPress={() => {
                 navigation.navigate(ROUTES.SIGN_IN);
@@ -119,10 +118,6 @@ const styles = StyleSheet.create({
   },
   choiceContainer: {
     marginTop: 10,
-  },
-  orangeText: {
-    color: COLORS.ORANGE,
-    textDecorationLine: 'underline',
   },
   noBorderBtn: {
     marginLeft: 10,

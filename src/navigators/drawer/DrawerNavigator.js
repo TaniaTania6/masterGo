@@ -6,6 +6,7 @@ import {
   CategoriesNavigator,
   NotificationsNavigator,
   OrdersNavigator,
+  ConstructionNavigator,
 } from 'src/navigators/stack';
 import {ROUTES} from 'src/constants';
 
@@ -21,6 +22,10 @@ export const DrawerNavigator = () => (
     <Drawer.Screen
       name={ROUTES.ORDERS_IN_PROGRESS}
       component={OrdersNavigator}
+    />
+    <Drawer.Screen
+      name={ROUTES.CONSTRUCTION_WORKS}
+      component={ConstructionNavigator}
     />
   </Drawer.Navigator>
 );

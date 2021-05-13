@@ -1,5 +1,6 @@
 import React from 'react';
-import {TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 
 import {ROUTES} from 'src/constants';
@@ -7,7 +8,9 @@ import {ROUTES} from 'src/constants';
 export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={navigation.goBack}>
+    <TouchableOpacity
+      onPress={navigation.goBack}
+      style={{height: 50, width: 60}}>
       {extraSource ? (
         <Image source={extraSource} style={styles.left} />
       ) : (

@@ -44,7 +44,7 @@ export const Input = ({
       <View
         style={[
           styles.inputContainer,
-          icon === 'search' && {paddingLeft: ICON_LEFT_PADDING},
+          icon === 'search' && styles.iconLeftPadding,
         ]}>
         {icon === 'search' && icons[icon] && renderIcon()}
         <NativeTextInput
@@ -53,7 +53,7 @@ export const Input = ({
             !!icon && {
               paddingRight: ICON_HORIZONTAL_PADDING,
             },
-            extraStyles,
+            // extraStyles,
           ]}
           placeholderTextColor={COLORS.GREY_DEEP}
           placeholder={placeholder}
@@ -97,5 +97,8 @@ const styles = StyleSheet.create({
   leftIcon: {
     left: 0,
     paddingHorizontal: ICON_HORIZONTAL_PADDING,
+  },
+  iconLeftPadding: {
+    paddingLeft: ICON_LEFT_PADDING,
   },
 });
