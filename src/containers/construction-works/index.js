@@ -60,7 +60,6 @@ export const ConstructionWorks = () => {
                 ? require('src/assets/images/checked.png')
                 : require('src/assets/images/unchecked.png')
             }
-            iconStyle={styles.iconStyles}
             onPress={() => {
               changeState(item.active, index);
             }}
@@ -115,9 +114,9 @@ const styles = StyleSheet.create({
     borderColor: COLORS.BTN_BORDER,
     backgroundColor: 'transparent',
   },
-  iconStyles: {},
   btnWidth: {
     width: '20%',
+    height: 55,
   },
   checkedBtn: {
     backgroundColor: COLORS.ORANGE,

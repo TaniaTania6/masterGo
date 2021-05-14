@@ -37,6 +37,12 @@ const items = [
     source: require('src/assets/images/drawer-images/orders.png'),
     route: ROUTES.CONSTRUCTION_WORKS,
   },
+  {
+    id: 6,
+    content: 'Payment for services',
+    source: require('src/assets/images/drawer-images/orders.png'),
+    route: ROUTES.PAYMENT_FOR_SERVICES,
+  },
 ];
 
 const HEADER_HEIGHT_IOS = 45;
@@ -92,6 +98,7 @@ export const DrawerContent = () => {
           data={items}
           renderItem={({item}) => renderMenuItem(handlePress, item, activeId)}
           keyExtractor={item => item.id}
+          contentContainerStyle={styles.content}
         />
       </SafeAreaView>
     </>
@@ -125,5 +132,8 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
+  },
+  content: {
+    paddingBottom: 20,
   },
 });

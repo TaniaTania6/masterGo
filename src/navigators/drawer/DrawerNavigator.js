@@ -7,6 +7,7 @@ import {
   NotificationsNavigator,
   OrdersNavigator,
   ConstructionNavigator,
+  PaymentServicesNavigator,
 } from 'src/navigators/stack';
 import {ROUTES} from 'src/constants';
 
@@ -26,6 +27,10 @@ export const DrawerNavigator = () => (
     <Drawer.Screen
       name={ROUTES.CONSTRUCTION_WORKS}
       component={ConstructionNavigator}
+    />
+    <Drawer.Screen
+      name={ROUTES.PAYMENT_FOR_SERVICES}
+      component={PaymentServicesNavigator}
     />
   </Drawer.Navigator>
 );

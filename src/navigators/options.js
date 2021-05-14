@@ -44,7 +44,7 @@ export const stylesHeaderText = {
   lineHeight: 22,
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   btn: {
     height: 20,
     width: 40,
@@ -58,5 +58,11 @@ const styles = StyleSheet.create({
   },
   left: {
     left: 30,
+  },
+  headerText: {
+    fontFamily: 'B612-Regular',
+    fontSize: 18,
+    fontWeight: '400',
+    lineHeight: 22,
   },
 });
