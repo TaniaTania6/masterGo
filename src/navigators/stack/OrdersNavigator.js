@@ -3,11 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {ROUTES, COLORS} from 'src/constants';
 import {OrdersInProgress} from 'src/containers';
 import {getLowercaseText} from 'src/utils/formatters';
-import {
-  LeftButton,
-  RightButton,
-  stylesHeaderText,
-} from 'src/navigators/options';
+import {LeftButton, RightButton, styles} from 'src/navigators/options';
 
 const Stack = createStackNavigator();
 
@@ -17,8 +13,8 @@ export const OrdersNavigator = () => (
       headerLeft: LeftButton,
       headerRight: RightButton,
       headerTintColor: COLORS.GREY_DARKER,
-      headerTitleStyle: stylesHeaderText,
-      headerStyle: {backgroundColor: COLORS.PRIMARY},
+      headerTitleStyle: styles.headerText,
+      headerStyle: styles.headerStyle,
       headerTitleAlign: 'center',
       headerTitle: getLowercaseText(route.name),
     })}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SignIn, SignUp} from 'src/containers';
-import {stylesHeaderText} from 'src/navigators/options';
+import {styles} from 'src/navigators/options';
 
 import {COLORS, ROUTES} from 'src/constants';
 import {getCapitalizedText} from 'src/utils/formatters';
@@ -12,10 +12,10 @@ export const AuthStackNavigator = () => (
   <Stack.Navigator
     mode="modal"
     screenOptions={({route}) => ({
-      headerStyle: {backgroundColor: COLORS.PRIMARY},
+      headerStyle: styles.headerStyle,
       headerLeft: null,
       headerTintColor: COLORS.GREY_DARKER,
-      headerTitleStyle: stylesHeaderText,
+      headerTitleStyle: styles.headerText,
       headerTitleAlign: 'center',
       headerTitle: getCapitalizedText(route.name),
     })}>

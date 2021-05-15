@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
-import {KeyboardAwareScrollView, Row, Text, Button} from 'src/components';
+import {View, Image, FlatList, ScrollView, StyleSheet} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Row, Text, Button} from 'src/components';
 import {COLORS} from 'src/constants';
+import {dimensions} from 'src/styles';
 
 const items = [
   {
@@ -18,6 +20,7 @@ const items = [
     name: 'Painting works',
     price: '$42',
     icon: require('src/assets/images/orders-painting.png'),
+    type: 'small',
   },
   {
     name: 'Interior design',
@@ -37,37 +40,31 @@ const items = [
 ];
 
 export const OrdersInProgress = () => {
+  const insets = useSafeAreaInsets();
+  const renderItem = item => (
+    <View style={[styles.block, item.type && styles.smallBlock]}>
+      <Image source={item.icon} />
+      <Text content={item.name} extraStyles={styles.title} />
+      <Text content={item.price} />
+    </View>
+  );
   return (
     <>
-      <KeyboardAwareScrollView>
-        <View>
-          <Row style={styles.container}>
-            {items.map((item, index) => (
-              <View
-                key={index}
-                style={
-                  index === 2
-                    ? {
-                        alignSelf: 'flex-end',
-                        marginBottom: 5,
-                        backgroundColor: 'red',
-                      }
-                    : {
-                        alignSelf: 'flex-start',
-                        marginBottom: 5,
-                        overFlow: 'visible',
-                        backgroundColor: 'green',
-                      }
-                }>
-                <Image source={item.icon} />
-                <Text content={item.name} extraStyles={styles.title} />
-                <Text content={item.price} />
-              </View>
-            ))}
-          </Row>
-        </View>
-      </KeyboardAwareScrollView>
-      <Row style={styles.btnContainer}>
+      <ScrollView style={styles.container}>
+        <FlatList
+          data={items}
+          renderItem={({item}) => renderItem(item)}
+          keyExtractor={item => item.name}
+          numColumns={2}
+        />
+      </ScrollView>
+      <Row
+        style={[
+          styles.btnContainer,
+          {
+            marginBottom: insets.bottom || dimensions.VERTICAL_PADDING,
+          },
+        ]}>
         <Button
           extraStyles={styles.transparentBtn}
           extraTextStyles={styles.greyText}
@@ -82,6 +79,10 @@ export const OrdersInProgress = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
+    paddingHorizontal: dimensions.HORIZONTAL_PADDING,
+  },
+  row: {
     flexWrap: 'wrap',
   },
   transparentBtn: {
@@ -97,5 +98,13 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingVertical: 5,
+  },
+  smallBlock: {
+    alignSelf: 'flex-end',
+  },
+  block: {
+    width: (dimensions.windowWidth - dimensions.HORIZONTAL_PADDING * 2) / 2,
+    alignItems: 'center',
+    marginBottom: 5,
   },
 });

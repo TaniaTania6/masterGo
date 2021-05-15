@@ -13,7 +13,7 @@ export const PaymentServicesNavigator = () => (
       headerRight: RightButton,
       headerLeft: LeftButton,
       headerTintColor: COLORS.GREY_DARKER,
-      headerStyle: {backgroundColor: COLORS.PRIMARY},
+      headerStyle: styles.headerStyle,
       headerTitleStyle: styles.headerText,
       headerTitleAlign: 'center',
       headerTitle: getLowercaseText(route.name),

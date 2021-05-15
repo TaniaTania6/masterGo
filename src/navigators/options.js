@@ -3,7 +3,7 @@ import {Image, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 
-import {ROUTES} from 'src/constants';
+import {ROUTES, COLORS} from 'src/constants';
 
 export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
@@ -37,13 +37,6 @@ export const RightButton = () => {
   );
 };
 
-export const stylesHeaderText = {
-  fontFamily: 'B612-Regular',
-  fontSize: 18,
-  fontWeight: '400',
-  lineHeight: 22,
-};
-
 export const styles = StyleSheet.create({
   btn: {
     height: 20,
@@ -64,5 +57,8 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     lineHeight: 22,
+  },
+  headerStyle: {
+    backgroundColor: COLORS.PRIMARY,
   },
 });

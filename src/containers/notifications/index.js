@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {View, Image, StyleSheet} from 'react-native';
-import {KeyboardAwareScrollView, Text} from 'src/components';
+import {View, Image, StyleSheet, ScrollView} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Text} from 'src/components';
 import {Button} from 'src/components';
 import {COLORS} from 'src/constants';
+import {dimensions} from 'src/styles';
 
 const items = [
   {
@@ -46,11 +48,12 @@ const items = [
 ];
 export const Notifications = () => {
   const [isShowAll, setIsShowAll] = useState(false);
+  const insets = useSafeAreaInsets();
   const showAllNotifications = () => {
     setIsShowAll(!isShowAll);
   };
   const renderItem = (item, index) => (
-    <View style={styles.container} key={index}>
+    <View style={styles.containerItem} key={index}>
       <View style={styles.shortInfo}>
         <Image source={item.icon} />
         <View style={styles.textContainer}>
@@ -62,20 +65,29 @@ export const Notifications = () => {
     </View>
   );
   return (
-    <KeyboardAwareScrollView>
+    <ScrollView style={styles.container}>
       {isShowAll
         ? items.map((item, index) => renderItem(item, index))
         : items
             .filter((item, index) => index < 3)
             .map((item, index) => renderItem(item, index))}
-      <Button text="View all" onPress={showAllNotifications} />
-    </KeyboardAwareScrollView>
+      <Button
+        text="View all"
+        onPress={showAllNotifications}
+        extraStyles={{
+          marginBottom: insets.bottom || dimensions.VERTICAL_PADDING,
+        }}
+      />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
+    paddingHorizontal: dimensions.HORIZONTAL_PADDING,
+  },
+  containerItem: {
     marginBottom: 40,
   },
   shortInfo: {
