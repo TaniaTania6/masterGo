@@ -8,6 +8,7 @@ import {
   OrdersNavigator,
   ConstructionNavigator,
   PaymentServicesNavigator,
+  CustomerInfoNavigator,
 } from 'src/navigators/stack';
 import {ROUTES} from 'src/constants';
 
@@ -31,6 +32,10 @@ export const DrawerNavigator = () => (
     <Drawer.Screen
       name={ROUTES.PAYMENT_FOR_SERVICES}
       component={PaymentServicesNavigator}
+    />
+    <Drawer.Screen
+      name={ROUTES.CUSTOMER_INFO}
+      component={CustomerInfoNavigator}
     />
   </Drawer.Navigator>
 );

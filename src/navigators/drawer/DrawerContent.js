@@ -43,6 +43,12 @@ const items = [
     source: require('src/assets/images/drawer-images/orders.png'),
     route: ROUTES.PAYMENT_FOR_SERVICES,
   },
+  {
+    id: 7,
+    content: 'Customer info',
+    source: require('src/assets/images/drawer-images/orders.png'),
+    route: ROUTES.CUSTOMER_INFO,
+  },
 ];
 
 const HEADER_HEIGHT_IOS = 45;
