@@ -49,7 +49,7 @@ export const ConstructionWorks = () => {
     return (
       <TouchableOpacity style={styles.btn} key={index}>
         <Row style={styles.contentBlock}>
-          <Text content={item.content} extraStyles={styles.greyText} />
+          <Text extraStyles={styles.greyText}>{item.content}</Text>
           <Button
             extraStyles={[
               styles.btnWidth,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   transparentBtn: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
   btnWidth: {
     width: '20%',

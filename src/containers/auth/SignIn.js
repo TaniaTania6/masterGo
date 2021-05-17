@@ -43,17 +43,14 @@ export const SignIn = ({navigation}) => {
             secureTextEntry={!visiblePassword}
             textContentType="password"
           />
-          <Text
-            content="Forgot your password?"
-            extraStyles={styles.forgotLine}
-          />
+          <Text extraStyles={styles.forgotLine}>Forgot your password?</Text>
           <Button
             onPress={() => {
               handleNavigate(ROUTES.APP);
             }}
             text="Login"
           />
-          <Text content="or" />
+          <Text>or</Text>
           <Row style={styles.btnContainer}>
             <Button
               theme="social"
@@ -78,7 +75,7 @@ export const SignIn = ({navigation}) => {
             />
           </Row>
           <Row style={styles.choiceContainer}>
-            <Text content="Don't have an account?" />
+            <Text>Don't have an account?</Text>
             <Button
               theme="noBorder"
               text="Sign Up"

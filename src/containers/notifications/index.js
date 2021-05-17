@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {View, Image, StyleSheet, ScrollView} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Text} from 'src/components';
-import {Button} from 'src/components';
+import {Text, Button} from 'src/components';
 import {COLORS} from 'src/constants';
 import {dimensions} from 'src/styles';
 
@@ -57,11 +56,11 @@ export const Notifications = () => {
       <View style={styles.shortInfo}>
         <Image source={item.icon} />
         <View style={styles.textContainer}>
-          <Text content={item.name} extraStyles={styles.name} />
-          <Text content={item.company} extraStyles={styles.company} />
+          <Text extraStyles={styles.name}>{item.name}</Text>
+          <Text extraStyles={styles.company}>{item.company}</Text>
         </View>
       </View>
-      <Text content={item.data} extraStyles={styles.data} />
+      <Text extraStyles={styles.data}>{item.data}</Text>
     </View>
   );
   return (
@@ -72,7 +71,7 @@ export const Notifications = () => {
             .filter((item, index) => index < 3)
             .map((item, index) => renderItem(item, index))}
       <Button
-        text="View all"
+        text={isShowAll ? 'Hide' : 'View all'}
         onPress={showAllNotifications}
         extraStyles={{
           marginBottom: insets.bottom || dimensions.VERTICAL_PADDING,
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     paddingHorizontal: dimensions.HORIZONTAL_PADDING,
+    marginTop: dimensions.VERTICAL_PADDING,
   },
   containerItem: {
     marginBottom: 40,

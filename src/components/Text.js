@@ -2,14 +2,12 @@ import React from 'react';
 import {Text as NativeText, StyleSheet} from 'react-native';
 import {COLORS} from 'src/constants';
 
-export const Text = ({content, extraStyles, bigFormat}) => {
+export const Text = ({extraStyles, title, ...props}) => {
   return (
     <NativeText
-      style={
-        bigFormat ? [styles.title, extraStyles] : [styles.text, extraStyles]
-      }>
-      {content}
-    </NativeText>
+      style={title ? [styles.title, extraStyles] : [styles.text, extraStyles]}
+      {...props}
+    />
   );
 };
 

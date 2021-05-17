@@ -3,14 +3,12 @@ import {StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView as KeyboardAwareScrollViewNative} from 'react-native-keyboard-aware-scroll-view';
 import {COLORS} from 'src/constants';
-
-const VERTICAL_PADDING = 40;
-const HORIZONTAL_PADDING = 30;
+import {dimensions} from 'src/styles';
 
 export const KeyboardAwareScrollView = ({children, style}) => {
   const insets = useSafeAreaInsets();
 
-  const getDummyView = () => {
+  const getPaddingBottom = () => {
     /*
      * On Android KeyboardAwareScrollView ignore paddingBottom, so
      * to add additional space we use such workaround. There is
@@ -19,7 +17,7 @@ export const KeyboardAwareScrollView = ({children, style}) => {
     return (
       <View
         style={{
-          paddingBottom: insets.bottom || VERTICAL_PADDING,
+          paddingBottom: insets.bottom || dimensions.VERTICAL_PADDING,
         }}
       />
     );
@@ -37,11 +35,7 @@ export const KeyboardAwareScrollView = ({children, style}) => {
       enableAutomaticScroll
       enableOnAndroid>
       {children}
-      {/* On Android KeyboardAwareScrollView ignore paddingBottom, so
-				to add additional space we use such workaround. There is
-				no fix so far.
-			*/}
-      {getDummyView()}
+      {getPaddingBottom()}
     </KeyboardAwareScrollViewNative>
   );
 };
@@ -50,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: COLORS.PRIMARY,
-    paddingTop: VERTICAL_PADDING,
-    paddingHorizontal: HORIZONTAL_PADDING,
+    paddingTop: dimensions.VERTICAL_PADDING,
+    paddingHorizontal: dimensions.HORIZONTAL_PADDING,
   },
 });

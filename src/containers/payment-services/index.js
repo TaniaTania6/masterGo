@@ -2,9 +2,7 @@ import React, {useState, useMemo} from 'react';
 import {FlatList, Image, View, StyleSheet} from 'react-native';
 import {Row, Text, Button} from 'src/components';
 import {COLORS} from 'src/constants';
-
-const VERTICAL_PADDING = 40;
-const HORIZONTAL_PADDING = 30;
+import {dimensions} from 'src/styles';
 
 const items = [
   {
@@ -32,32 +30,35 @@ export const PaymentServices = () => {
     });
     return result;
   }, [data]);
-  const renderService = ({img, content, price}) => (
+  const renderService = ({item}) => (
     <Row style={styles.row}>
-      <Image source={img} style={styles.image} />
-      <Text content={content} />
-      <Text content={price} extraStyles={styles.price} bigFormat />
+      <Image source={item.img} style={styles.image} />
+      <Text>{item.content}</Text>
+      <Text extraStyles={styles.price} title>
+        {item.price}
+      </Text>
     </Row>
+  );
+
+  const renderFooter = () => (
+    <View>
+      <View style={styles.separator} />
+      <Row>
+        <Text content="Total" />
+        <Text content={`$${memorizedSum}`} />
+      </Row>
+    </View>
   );
 
   return (
     <View style={styles.container}>
       <FlatList
         data={items}
-        renderItem={({item}) => renderService(item)}
+        renderItem={renderService}
         keyExtractor={item => item.content}
-        ListFooterComponent={() => (
-          <View>
-            <View style={styles.separator} />
-            <Row>
-              <Text content="Total" />
-              <Text content={`$${memorizedSum}`} />
-            </Row>
-          </View>
-        )}
+        ListFooterComponent={renderFooter}
         ListFooterComponentStyle={styles.block}
       />
-
       <Button text="Checkout" />
       <Button text="Continue Shopping" theme="noBorder" />
     </View>
@@ -67,8 +68,8 @@ export const PaymentServices = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingTop: VERTICAL_PADDING,
-    paddingHorizontal: HORIZONTAL_PADDING,
+    paddingTop: dimensions.VERTICAL_PADDING,
+    paddingHorizontal: dimensions.HORIZONTAL_PADDING,
   },
   image: {
     height: '100%',

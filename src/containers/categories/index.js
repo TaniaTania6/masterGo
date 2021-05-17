@@ -40,7 +40,7 @@ export const Categories = () => {
         <Image source={item.icon} style={styles.btnImg} />
       </View>
       <Row style={styles.contentBlock}>
-        <Text content={item.content} extraStyles={styles.greyText} />
+        <Text extraStyles={styles.greyText}>{item.content}</Text>
         <Button
           icon={require('src/assets/images/arrow-right.png')}
           extraStyles={styles.arrayBtn}
@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
   transparentBtn: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
 });

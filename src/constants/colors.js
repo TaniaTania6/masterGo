@@ -13,4 +13,5 @@ export default {
   ORANGE: '#FFB19D',
   BTN_DRAWER: '#323440',
   STAR: '#E2E2EF',
+  TRANSPARENT: 'transparent',
 };

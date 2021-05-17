@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {AirbnbRating} from 'react-native-ratings';
@@ -30,31 +31,52 @@ const data = [
   },
 ];
 
+const shortDetailsContent =
+  'I have been working in this position for over 10 years! I have created many design solutions and I think my main best quality is creativity. If you liked my work, please contact me and see the professionalism and quality of my services.';
+
 export const CustomerInfo = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeSource, setActiveSource] = useState(data[activeSlide].img);
+  const [detailsContent, setDetailsContent] = useState(shortDetailsContent);
 
   const handlePress = index => {
     setActiveSlide(index);
     setActiveSource(data[index].img);
   };
+  const changeTextVolume = () => {
+    setDetailsContent(detailsContent.repeat(3));
+  };
   const renderItem = () => {
+    console.log(activeSource, '!!!activeSource');
     return (
-      <View>
-        <Image source={activeSource} style={styles.slideImage} />
-      </View>
+      <>
+        {activeSource ? (
+          <View>
+            <Image source={activeSource} style={styles.slideImage} />
+          </View>
+        ) : (
+          <View>
+            <ActivityIndicator size="large" color="#00ff00" />
+          </View>
+        )}
+        {/* <View>
+          <Image source={activeSource} style={styles.slideImage} />
+        </View> */}
+      </>
     );
   };
   return (
     <ScrollView style={styles.container}>
-      <Text content="Portfolio" extraStyles={styles.title} bigFormat />
-      <Text
-        content="The last completed works of the contractor are shown below."
-        extraStyles={styles.text}
-      />
+      <Text extraStyles={styles.title} title>
+        Portfolio
+      </Text>
+      <Text extraStyles={styles.text}>
+        The last completed works of the contractor are shown below.
+      </Text>
       <Row>
         <Carousel
           data={data}
+          // extraData={data}
           renderItem={renderItem}
           sliderWidth={dimensions.windowWidth}
           itemWidth={dimensions.windowWidth}
@@ -81,16 +103,18 @@ export const CustomerInfo = () => {
         />
       </View>
       <View>
-        <Text
-          content="Details"
-          extraStyles={[styles.title, styles.detailsTitle]}
-          bigFormat
+        <Text extraStyles={[styles.title, styles.detailsTitle]} title>
+          Details
+        </Text>
+        <Text extraStyles={[styles.text, styles.detailsText]}>
+          {detailsContent}
+        </Text>
+        <Button
+          text="Read more"
+          theme="noBorder"
+          extraStyles={styles.btn}
+          onPress={() => changeTextVolume()}
         />
-        <Text
-          content="I have been working in this position for over 10 years! I have created many design solutions and I think my main best quality is creativity. If you liked my work, please contact me and see the professionalism and quality of my services."
-          extraStyles={[styles.text, styles.detailsText]}
-        />
-        <Button text="Read more" theme="noBorder" extraStyles={styles.btn} />
       </View>
     </ScrollView>
   );
@@ -109,15 +133,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 24,
     textAlign: 'left',
-    marginBottom: 26,
-    marginTop: 17,
+    marginBottom: 20,
+    marginTop: 15,
   },
   detailsText: {
-    marginTop: 17,
-    marginBottom: 12,
+    marginTop: 15,
+    marginBottom: 10,
   },
   detailsTitle: {
-    marginTop: 57,
+    marginTop: 50,
   },
   slideImage: {
     width: '65%',

@@ -41,11 +41,11 @@ const items = [
 
 export const OrdersInProgress = () => {
   const insets = useSafeAreaInsets();
-  const renderItem = item => (
-    <View style={[styles.block, item.type && styles.smallBlock]}>
+  const renderItem = ({item}) => (
+    <View style={[styles.block, item.type && styles.adjustment]}>
       <Image source={item.icon} />
-      <Text content={item.name} extraStyles={styles.title} />
-      <Text content={item.price} />
+      <Text extraStyles={styles.title}>{item.name}</Text>
+      <Text>{item.price}</Text>
     </View>
   );
   return (
@@ -53,21 +53,21 @@ export const OrdersInProgress = () => {
       <ScrollView style={styles.container}>
         <FlatList
           data={items}
-          renderItem={({item}) => renderItem(item)}
+          renderItem={renderItem}
           keyExtractor={item => item.name}
           numColumns={2}
         />
       </ScrollView>
       <Row
         style={[
-          styles.btnContainer,
+          styles.buttonsContainer,
           {
             marginBottom: insets.bottom || dimensions.VERTICAL_PADDING,
           },
         ]}>
         <Button
-          extraStyles={styles.transparentBtn}
-          extraTextStyles={styles.greyText}
+          extraStyles={styles.choiceButton}
+          extraTextStyles={styles.buttonTitle}
           text="Archive"
           theme="small"
         />
@@ -85,21 +85,21 @@ const styles = StyleSheet.create({
   row: {
     flexWrap: 'wrap',
   },
-  transparentBtn: {
+  choiceButton: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
-  btnContainer: {
+  buttonsContainer: {
     marginHorizontal: '8%',
   },
-  greyText: {
+  buttonTitle: {
     color: COLORS.GREY_DARK,
   },
   title: {
     paddingVertical: 5,
   },
-  smallBlock: {
+  adjustment: {
     alignSelf: 'flex-end',
   },
   block: {

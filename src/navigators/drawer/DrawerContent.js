@@ -88,7 +88,7 @@ export const DrawerContent = () => {
         iconStyle={styles.image}
         icon={item.source}
       />
-      <Text content={item.content} />
+      <Text>{item.content}</Text>
     </View>
   );
 
@@ -118,8 +118,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // flexDirection: 'row',
-    // alignItems: 'center',
     backgroundColor: COLORS.GREY_DARKER,
   },
   itemContainer: {

@@ -37,6 +37,22 @@ export const RightButton = () => {
   );
 };
 
+export const headerOptionsFull = {
+  headerStyle: {
+    backgroundColor: COLORS.PRIMARY,
+  },
+  headerLeft: LeftButton,
+  headerRight: RightButton,
+  headerTintColor: COLORS.GREY_DARKER,
+  headerTitleStyle: {
+    fontFamily: 'B612-Regular',
+    fontSize: 18,
+    fontWeight: '400',
+    lineHeight: 22,
+  },
+  headerTitleAlign: 'center',
+};
+
 export const styles = StyleSheet.create({
   btn: {
     height: 20,

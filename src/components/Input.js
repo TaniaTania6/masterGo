@@ -19,15 +19,7 @@ const icons = {
   search: Search,
 };
 
-export const Input = ({
-  placeholder,
-  extraStyles,
-  keyboardType,
-  icon,
-  onIconPress,
-  textContentType,
-  secureTextEntry,
-}) => {
+export const Input = ({icon, onIconPress, ...props}) => {
   const renderIcon = () => (
     <Pressable
       onPress={onIconPress}
@@ -53,13 +45,9 @@ export const Input = ({
             !!icon && {
               paddingRight: ICON_HORIZONTAL_PADDING,
             },
-            // extraStyles,
           ]}
           placeholderTextColor={COLORS.GREY_DEEP}
-          placeholder={placeholder}
-          keyboardType={keyboardType}
-          textContentType={textContentType}
-          secureTextEntry={secureTextEntry}
+          {...props}
         />
         {icon !== 'search' && icons[icon] && renderIcon()}
       </View>

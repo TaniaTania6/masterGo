@@ -1,21 +1,16 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {ROUTES, COLORS} from 'src/constants';
+import {ROUTES} from 'src/constants';
 import {OrdersInProgress} from 'src/containers';
 import {getLowercaseText} from 'src/utils/formatters';
-import {LeftButton, RightButton, styles} from 'src/navigators/options';
+import {headerOptionsFull} from 'src/navigators/options';
 
 const Stack = createStackNavigator();
 
 export const OrdersNavigator = () => (
   <Stack.Navigator
     screenOptions={({route}) => ({
-      headerLeft: LeftButton,
-      headerRight: RightButton,
-      headerTintColor: COLORS.GREY_DARKER,
-      headerTitleStyle: styles.headerText,
-      headerStyle: styles.headerStyle,
-      headerTitleAlign: 'center',
+      ...headerOptionsFull,
       headerTitle: getLowercaseText(route.name),
     })}>
     <Stack.Screen

@@ -54,7 +54,7 @@ export const SignUp = ({navigation}) => {
             }}
             text="Sign Up"
           />
-          <Text content="or" />
+          <Text>or</Text>
           <Row style={styles.btnContainer}>
             <Button
               theme="social"
@@ -79,7 +79,7 @@ export const SignUp = ({navigation}) => {
             />
           </Row>
           <Row style={styles.choiceContainer}>
-            <Text content="Already have an account?" />
+            <Text>Already have an account?</Text>
             <Button
               theme="noBorder"
               text="Sign In"

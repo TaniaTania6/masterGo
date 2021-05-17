@@ -4,7 +4,6 @@ import {Text} from 'src/components';
 import {COLORS} from 'src/constants';
 
 export const Button = ({
-  children,
   text,
   theme = 'primary',
   icon,
@@ -37,10 +36,9 @@ export const Button = ({
       activeOpacity={0.8}>
       {icon && <Image source={icon} styles={iconStyle} />}
       {text && (
-        <Text
-          content={text}
-          extraStyles={[styles.text, textStyles, extraTextStyles]}
-        />
+        <Text extraStyles={[styles.text, textStyles, extraTextStyles]}>
+          {text}
+        </Text>
       )}
     </TouchableOpacity>
   );
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   transparentButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
   },
@@ -65,18 +63,18 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.TURQUOISE,
     width: 80,
     height: 80,
-    borderRadius: 50,
+    borderRadius: 40,
     justifyContent: 'center',
   },
   socialBtn: {
     backgroundColor: COLORS.PRIMARY,
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
-    width: '32%',
+    flex: 0.32,
     alignItems: 'center',
   },
   noBorderBtn: {
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
   smallBtn: {
     backgroundColor: COLORS.TURQUOISE,

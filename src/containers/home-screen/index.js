@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Text, Button, Row} from 'src/components';
-// import {Phone} from 'src/assets/images';
 
 import {COLORS} from 'src/constants';
 
@@ -27,14 +26,14 @@ export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const renderDarkBtn = item => {
     return (
-      <TouchableOpacity style={styles.darkBtn} key={item.title}>
+      <TouchableOpacity style={styles.button} key={item.title}>
         <View style={styles.imageContainer}>
           <Image source={item.icon} />
         </View>
-        <View style={styles.greyLine} />
-        <View style={styles.innerText}>
-          <Text content={item.title} extraStyles={styles.greyText} />
-          <Text content={item.data} extraStyles={styles.whiteText} />
+        <View style={styles.line} />
+        <View style={styles.textWrapper}>
+          <Text extraStyles={styles.buttonTitle}>{item.title}</Text>
+          <Text extraStyles={styles.buttonText}>{item.data}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -42,35 +41,30 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.whiteBlock}>
+      <View style={styles.dataContainer}>
         <Image
           source={require('src/assets/images/home-profile.png')}
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <Text
-            content="Jeremías del Pozo"
-            extraStyles={styles.name}
-            bigFormat
-          />
-          <Text content="New York • ID: 1120611" />
+          <Text extraStyles={styles.name} title>
+            Jeremías del Pozo
+          </Text>
+          <Text>New York • ID: 1120611</Text>
         </View>
-        <Button
-          theme="noBorder"
-          text="Edit"
-          extraTextStyles={styles.orangeText}
-        />
-        <Row style={styles.btnContainer}>
+        <Button theme="noBorder" text="Edit" />
+        <Row style={styles.buttonsContainer}>
           <Button
-            extraStyles={styles.transparentBtn}
-            extraTextStyles={styles.greyText}
+            extraStyles={styles.choiceButton}
+            extraTextStyles={styles.buttonTitle}
             text="About Me"
             theme="small"
           />
           <Button text="Reviews" theme="small" />
         </Row>
       </View>
-      <View style={[styles.greyBlock, {paddingBottom: insets.bottom + 20}]}>
+      <View
+        style={[styles.contactsWrapper, {paddingBottom: insets.bottom + 20}]}>
         {btnInfo.map(item => renderDarkBtn(item))}
       </View>
     </View>
@@ -81,7 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  whiteBlock: {
+  dataContainer: {
     flex: 1,
     backgroundColor: COLORS.PRIMARY,
     paddingVertical: 30,
@@ -89,17 +83,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  btnContainer: {
+  buttonsContainer: {
     width: '100%',
   },
-  greyBlock: {
+  contactsWrapper: {
     backgroundColor: COLORS.GREY_DARKER,
     flex: 1,
     paddingHorizontal: 30,
     justifyContent: 'space-between',
     paddingTop: 30,
   },
-  darkBtn: {
+  button: {
     backgroundColor: COLORS.GREY_DARKER,
     borderWidth: 1,
     borderColor: COLORS.GREY_DARK,
@@ -120,30 +114,26 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     paddingBottom: 5,
   },
-  orangeText: {
-    color: COLORS.ORANGE,
-    textDecorationLine: 'underline',
-  },
-  greyText: {
+  buttonTitle: {
     color: COLORS.GREY_DARK,
   },
-  whiteText: {
+  buttonText: {
     color: COLORS.WHITE,
   },
   imageContainer: {
     justifyContent: 'center',
   },
-  greyLine: {
+  line: {
     width: 1,
     backgroundColor: COLORS.GREY_LIGHT,
     marginHorizontal: 25,
   },
-  innerText: {
+  textWrapper: {
     alignItems: 'flex-start',
   },
-  transparentBtn: {
+  choiceButton: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
 });

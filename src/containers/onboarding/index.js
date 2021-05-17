@@ -40,15 +40,20 @@ export const Onboarding = ({navigation}) => {
 
   const insets = useSafeAreaInsets();
 
-  const renderSlide = ({index}) => (
-    <View style={styles.slideContainer}>
-      <View key={index} style={styles.flexContainer}>
-        <Text content={activeTitle} extraStyles={styles.textStyles} bigFormat />
-        <Image source={activeSource} style={styles.image} />
+  const renderSlide = ({index}) => {
+    console.log(activeSource, 'activeSourcein Onboarding');
+    return (
+      <View style={styles.slideContainer}>
+        <View key={index} style={styles.flexContainer}>
+          <Text extraStyles={styles.textStyles} title>
+            {activeTitle}
+          </Text>
+          <Image source={activeSource} style={styles.image} />
+        </View>
+        <Text>{activeText}</Text>
       </View>
-      <Text content={activeText} />
-    </View>
-  );
+    );
+  };
 
   const handlerSnapToItem = idx => {
     setActiveSlide(idx);
@@ -92,7 +97,7 @@ export const Onboarding = ({navigation}) => {
           extraStyles={{marginBottom: insets.bottom + 20}}
           theme="circle"
           icon={require('src/assets/images/plus.png')}
-          iconStyle={styles.plus}
+          iconStyle={styles.plusButton}
         />
       ) : (
         <Button
@@ -131,7 +136,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: COLORS.GREY_LIGHT,
   },
-  plus: {
+  plusButton: {
     color: COLORS.WHITE,
     lineHeight: 19,
   },
