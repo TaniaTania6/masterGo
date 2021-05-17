@@ -3,12 +3,12 @@ import {Image, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 
-import {ROUTES, COLORS} from 'src/constants';
+import {COLORS} from 'src/constants';
 
 export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={navigation.goBack} style={styles.btn}>
+    <TouchableOpacity onPress={navigation.goBack} style={styles.button}>
       {extraSource ? (
         <Image source={extraSource} style={styles.left} />
       ) : (
@@ -25,10 +25,8 @@ export const RightButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      style={[styles.btn, styles.btnRight]}
-      onPress={() => {
-        navigation.navigate(ROUTES.APP);
-      }}>
+      style={[styles.button, styles.buttonRight]}
+      onPress={navigation.toggleDrawer}>
       <Image
         source={require('src/assets/icons/menu.png')}
         style={styles.right}
@@ -54,12 +52,12 @@ export const headerOptionsFull = {
 };
 
 export const styles = StyleSheet.create({
-  btn: {
+  button: {
     height: 20,
     width: 40,
     justifyContent: 'center',
   },
-  btnRight: {
+  buttonRight: {
     width: 50,
   },
   right: {

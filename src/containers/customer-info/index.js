@@ -38,6 +38,7 @@ export const CustomerInfo = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeSource, setActiveSource] = useState(data[activeSlide].img);
   const [detailsContent, setDetailsContent] = useState(shortDetailsContent);
+  const [isLoader, setIsLoader] = useState(true);
 
   const handlePress = index => {
     setActiveSlide(index);
@@ -47,21 +48,19 @@ export const CustomerInfo = () => {
     setDetailsContent(detailsContent.repeat(3));
   };
   const renderItem = () => {
-    console.log(activeSource, '!!!activeSource');
     return (
       <>
-        {activeSource ? (
-          <View>
-            <Image source={activeSource} style={styles.slideImage} />
-          </View>
-        ) : (
-          <View>
-            <ActivityIndicator size="large" color="#00ff00" />
-          </View>
-        )}
-        {/* <View>
-          <Image source={activeSource} style={styles.slideImage} />
-        </View> */}
+        <View>
+          {isLoader ? (
+            <ActivityIndicator size="large" color={COLORS.ORANGE} />
+          ) : (
+            <Image
+              source={activeSource}
+              style={styles.slideImage}
+              onLoad={() => setIsLoader(false)}
+            />
+          )}
+        </View>
       </>
     );
   };
@@ -112,7 +111,7 @@ export const CustomerInfo = () => {
         <Button
           text="Read more"
           theme="noBorder"
-          extraStyles={styles.btn}
+          extraStyles={styles.button}
           onPress={() => changeTextVolume()}
         />
       </View>
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     height: '3%',
   },
-  btn: {
+  button: {
     alignItems: 'flex-start',
   },
 });

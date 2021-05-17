@@ -41,7 +41,6 @@ export const Onboarding = ({navigation}) => {
   const insets = useSafeAreaInsets();
 
   const renderSlide = ({index}) => {
-    console.log(activeSource, 'activeSourcein Onboarding');
     return (
       <View style={styles.slideContainer}>
         <View key={index} style={styles.flexContainer}>

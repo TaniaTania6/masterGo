@@ -45,15 +45,15 @@ export const ConstructionWorks = () => {
     });
     setStatesArray(changedData);
   };
-  const renderBtn = (item, index) => {
+  const renderButton = (item, index) => {
     return (
-      <TouchableOpacity style={styles.btn} key={index}>
-        <Row style={styles.contentBlock}>
-          <Text extraStyles={styles.greyText}>{item.content}</Text>
+      <TouchableOpacity style={styles.button} key={index}>
+        <Row style={styles.contentContainer}>
+          <Text extraStyles={styles.title}>{item.content}</Text>
           <Button
             extraStyles={[
-              styles.btnWidth,
-              item.active ? styles.checkedBtn : styles.unCheckedBtn,
+              styles.widthStyles,
+              item.active ? styles.checkedButton : styles.unCheckedButton,
             ]}
             icon={
               item.active
@@ -71,13 +71,13 @@ export const ConstructionWorks = () => {
   return (
     <KeyboardAwareScrollView>
       <Input placeholder="Search by category" icon="search" />
-      <View style={styles.block}>
-        {statesArray.map((item, index) => renderBtn(item, index))}
+      <View style={styles.container}>
+        {statesArray.map((item, index) => renderButton(item, index))}
       </View>
-      <Row style={styles.btnContainer}>
+      <Row style={styles.buttonsContainer}>
         <Button
-          extraStyles={styles.transparentBtn}
-          extraTextStyles={styles.greyText}
+          extraStyles={styles.buttonStyles}
+          extraTextStyles={styles.title}
           text="Skip"
           theme="small"
         />
@@ -88,40 +88,40 @@ export const ConstructionWorks = () => {
 };
 
 const styles = StyleSheet.create({
-  block: {
+  container: {
     marginVertical: 30,
     width: '100%',
   },
-  btnContainer: {
+  buttonsContainer: {
     width: '100%',
   },
-  greyText: {
+  title: {
     color: COLORS.GREY_DARK,
   },
-  contentBlock: {
+  contentContainer: {
     flex: 1,
     paddingLeft: '5%',
   },
-  btn: {
+  button: {
     backgroundColor: COLORS.PRIMARY,
     borderWidth: 1,
     borderColor: COLORS.ORANGE,
     flexDirection: 'row',
     marginVertical: 5,
   },
-  transparentBtn: {
+  buttonStyles: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
     backgroundColor: COLORS.TRANSPARENT,
   },
-  btnWidth: {
+  widthStyles: {
     width: '20%',
     height: 55,
   },
-  checkedBtn: {
+  checkedButton: {
     backgroundColor: COLORS.ORANGE,
   },
-  unCheckedBtn: {
+  unCheckedButton: {
     backgroundColor: COLORS.GREY_LIGHTER,
   },
 });
