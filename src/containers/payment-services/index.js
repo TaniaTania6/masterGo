@@ -7,17 +7,17 @@ import {dimensions} from 'src/styles';
 const items = [
   {
     img: require('src/assets/images/welding-works.png'),
-    content: 'Welding works',
+    title: 'Welding works',
     price: '$40',
   },
   {
     img: require('src/assets/images/foundation-works.png'),
-    content: 'Foundation works',
+    title: 'Foundation works',
     price: '$55',
   },
   {
     img: require('src/assets/images/waterproofing.png'),
-    content: 'Waterproofing',
+    title: 'Waterproofing',
     price: '$20',
   },
 ];
@@ -33,7 +33,7 @@ export const PaymentServices = () => {
   const renderService = ({item}) => (
     <Row style={styles.row}>
       <Image source={item.img} style={styles.image} />
-      <Text>{item.content}</Text>
+      <Text>{item.title}</Text>
       <Text extraStyles={styles.price} title>
         {item.price}
       </Text>
@@ -60,7 +60,7 @@ export const PaymentServices = () => {
         ListFooterComponentStyle={styles.footerStyles}
       />
       <Button text="Checkout" />
-      <Button text="Continue Shopping" theme="noBorder" />
+      <Button text="Continue Shopping" theme="plain" />
     </View>
   );
 };

@@ -12,9 +12,9 @@ import {AirbnbRating} from 'react-native-ratings';
 import {Text, Row, Button} from 'src/components';
 import {dimensions} from 'src/styles';
 import {COLORS} from 'src/constants';
+import {Star} from 'src/assets/svg';
 
 const IMG_SIDE = 57;
-const STAR_IMAGE = require('src/assets/images/star.png');
 
 const data = [
   {
@@ -40,7 +40,7 @@ export const CustomerInfo = () => {
   const [detailsContent, setDetailsContent] = useState(shortDetailsContent);
   const [isLoader, setIsLoader] = useState(true);
 
-  const handlePress = index => {
+  const handlePress = index => () => {
     setActiveSlide(index);
     setActiveSource(data[index].img);
   };
@@ -51,15 +51,15 @@ export const CustomerInfo = () => {
     return (
       <>
         <View>
-          {/* {isLoader ? (
+          {isLoader ? (
             <ActivityIndicator size="large" color={COLORS.ORANGE} />
-          ) : ( */}
+          ) : (
             <Image
               source={activeSource}
               style={styles.slideImage}
               onLoad={() => setIsLoader(false)}
             />
-          {/* )} */}
+          )}
         </View>
       </>
     );
@@ -84,16 +84,16 @@ export const CustomerInfo = () => {
         />
         <View>
           {data.map((item, index) => (
-            <TouchableOpacity onPress={() => handlePress(index)} key={index}>
+            <TouchableOpacity onPress={handlePress(index)} key={index}>
               <Image source={item.img} style={styles.sideImage} />
             </TouchableOpacity>
           ))}
         </View>
       </Row>
-      <View style={styles.rating}>
+      <View style={styles.ratingWrapper}>
         <AirbnbRating
           count={5}
-          reviews={STAR_IMAGE}
+          reviews={Star}
           selectedColor={COLORS.ORANGE}
           unSelectedColor={COLORS.STAR}
           defaultRating={4}
@@ -109,7 +109,7 @@ export const CustomerInfo = () => {
         </Text>
         <Button
           text="Read more"
-          theme="noBorder"
+          theme="plain"
           extraStyles={styles.button}
           onPress={changeTextVolume}
         />
@@ -131,15 +131,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 24,
     textAlign: 'left',
-    marginBottom: 20,
-    marginTop: 15,
+    marginVertical: 15,
   },
   detailsText: {
     marginTop: 15,
     marginBottom: 10,
   },
   detailsTitle: {
-    marginTop: 50,
+    marginTop: 45,
   },
   slideImage: {
     width: '65%',
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     width: IMG_SIDE,
     height: IMG_SIDE,
   },
-  rating: {
+  ratingWrapper: {
     alignItems: 'flex-start',
     height: '3%',
   },

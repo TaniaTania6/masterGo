@@ -8,37 +8,38 @@ import {
   Text,
 } from 'src/components';
 import {COLORS} from 'src/constants';
+import {Checked, Unchecked} from 'src/assets/svg';
 
 const buttonInfo = [
   {
-    content: 'Welding works',
+    title: 'Welding works',
     active: true,
   },
   {
-    content: 'Foundation works',
+    title: 'Foundation works',
     active: true,
   },
   {
-    content: 'Roofing',
+    title: 'Roofing',
     active: false,
   },
   {
-    content: 'Waterproofing',
+    title: 'Waterproofing',
     active: true,
   },
   {
-    content: 'Architecture',
+    title: 'Architecture',
     active: false,
   },
   {
-    content: 'Design',
+    title: 'Design',
     active: false,
   },
 ];
 export const ConstructionWorks = () => {
   const [statusArray, setStatusArray] = useState(buttonInfo);
 
-  const changeState = (status, index) => {
+  const changeStatus = (status, index) => () => {
     const changedData = statusArray.map((item, ind) => {
       let result = ind === index ? {...item, active: !status} : {...item};
       return result;
@@ -49,20 +50,14 @@ export const ConstructionWorks = () => {
     return (
       <TouchableOpacity style={styles.button} key={index}>
         <Row style={styles.contentContainer}>
-          <Text extraStyles={styles.title}>{item.content}</Text>
+          <Text extraStyles={styles.title}>{item.title}</Text>
           <Button
             extraStyles={[
               styles.widthStyles,
               item.active ? styles.checkedButton : styles.unCheckedButton,
             ]}
-            icon={
-              item.active
-                ? require('src/assets/images/checked.png')
-                : require('src/assets/images/unchecked.png')
-            }
-            onPress={() => {
-              changeState(item.active, index);
-            }}
+            icon={item.active ? Checked : Unchecked}
+            onPress={changeStatus(item.active, index)}
           />
         </Row>
       </TouchableOpacity>
@@ -111,7 +106,7 @@ const styles = StyleSheet.create({
   },
   buttonStyles: {
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     backgroundColor: COLORS.TRANSPARENT,
   },
   widthStyles: {

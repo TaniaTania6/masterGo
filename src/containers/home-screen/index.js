@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Text, Button, Row} from 'src/components';
+import {Phone, Email, Point} from 'src/assets/svg';
 
 import {COLORS} from 'src/constants';
 
@@ -9,26 +10,27 @@ const buttonInfo = [
   {
     title: 'Phone number',
     phone: '+3746589923',
-    icon: require('src/assets/images/btn-images/phone.png'),
+    icon: Phone,
   },
   {
     title: 'Email',
     phone: 'conrad@gmail.com',
-    icon: require('src/assets/images/btn-images/email.png'),
+    icon: Email,
   },
   {
     title: 'Completed projects',
     phone: '248',
-    icon: require('src/assets/images/btn-images/point.png'),
+    icon: Point,
   },
 ];
 export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const renderDarkButton = item => {
+    const Icon = item.icon;
     return (
       <TouchableOpacity style={styles.button} key={item.title}>
         <View style={styles.imageContainer}>
-          <Image source={item.icon} />
+          <Icon width={17} height={17} />
         </View>
         <View style={styles.line} />
         <View style={styles.textWrapper}>
@@ -52,7 +54,7 @@ export const HomeScreen = () => {
           </Text>
           <Text>New York • ID: 1120611</Text>
         </View>
-        <Button theme="noBorder" text="Edit" />
+        <Button theme="plain" text="Edit" />
         <Row style={styles.buttonsContainer}>
           <Button
             extraStyles={styles.choiceButton}
@@ -78,8 +80,7 @@ const styles = StyleSheet.create({
   dataContainer: {
     flex: 1,
     backgroundColor: COLORS.PRIMARY,
-    paddingVertical: 30,
-    paddingHorizontal: 30,
+    padding: 30,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
   },
   choiceButton: {
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     backgroundColor: COLORS.TRANSPARENT,
   },
 });

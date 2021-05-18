@@ -5,48 +5,49 @@ import {Button, Text} from 'src/components';
 import {LeftButton} from 'src/navigators/options';
 import {COLORS, ROUTES} from 'src/constants';
 import {notch} from 'src/styles';
+import {Home, Categories, Notifications, Orders} from 'src/assets/svg';
 
 const items = [
   {
     id: 1,
-    content: 'Home',
-    source: require('src/assets/images/drawer-images/home.png'),
+    title: 'Home',
+    source: Home,
     route: ROUTES.HOMESCREEN,
   },
   {
     id: 2,
-    content: 'Categories',
-    source: require('src/assets/images/drawer-images/categories.png'),
+    title: 'Categories',
+    source: Categories,
     route: ROUTES.CATEGORIES,
   },
   {
     id: 3,
-    content: 'Notifications',
-    source: require('src/assets/images/drawer-images/notifications.png'),
+    title: 'Notifications',
+    source: Notifications,
     route: ROUTES.NOTIFICATIONS,
   },
   {
     id: 4,
-    content: 'Orders in progress',
-    source: require('src/assets/images/drawer-images/orders.png'),
+    title: 'Orders in progress',
+    source: Orders,
     route: ROUTES.ORDERS_IN_PROGRESS,
   },
   {
     id: 5,
-    content: 'Construction works',
-    source: require('src/assets/images/drawer-images/orders.png'),
+    title: 'Construction works',
+    source: Orders,
     route: ROUTES.CONSTRUCTION_WORKS,
   },
   {
     id: 6,
-    content: 'Payment for services',
-    source: require('src/assets/images/drawer-images/orders.png'),
+    title: 'Payment for services',
+    source: Orders,
     route: ROUTES.PAYMENT_FOR_SERVICES,
   },
   {
     id: 7,
-    content: 'Customer info',
-    source: require('src/assets/images/drawer-images/orders.png'),
+    title: 'Customer info',
+    source: Orders,
     route: ROUTES.CUSTOMER_INFO,
   },
 ];
@@ -82,13 +83,14 @@ export const DrawerContent = () => {
     <View style={styles.itemContainer}>
       <Button
         onPress={() => onPress(item)}
-        extraStyles={
-          id === item.id ? [styles.btn, styles.activeBtn] : styles.btn
-        }
+        // extraStyles={
+        //   id === item.id ? [styles.btn, styles.activeBtn] : styles.btn
+        // }
+        extraStyles={[styles.btn, id === item.id && styles.activeBtn]}
         iconStyle={styles.image}
         icon={item.source}
       />
-      <Text>{item.content}</Text>
+      <Text>{item.title}</Text>
     </View>
   );
 

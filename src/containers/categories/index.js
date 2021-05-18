@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {
   Text,
   Button,
@@ -9,45 +9,53 @@ import {
 } from 'src/components';
 
 import {COLORS} from 'src/constants';
+import {
+  CategoryCleaning,
+  CategoryCourier,
+  CategoryEquipment,
+  CategoryFurniture,
+  CategoryInterior,
+  ArrowRight,
+} from 'src/assets/svg';
 
 const buttonInfo = [
   {
-    content: 'Furniture works',
-    icon: require('src/assets/images/categories-images/furniture-icon.png'),
+    title: 'Furniture works',
+    icon: CategoryFurniture,
   },
   {
-    content: 'Cleaning services',
-    icon: require('src/assets/images/categories-images/cleaning-icon.png'),
+    title: 'Cleaning services',
+    icon: CategoryCleaning,
   },
   {
-    content: 'Equipment repair',
-    icon: require('src/assets/images/categories-images/equipment-icon.png'),
+    title: 'Equipment repair',
+    icon: CategoryEquipment,
   },
   {
-    content: 'Courier services',
-    icon: require('src/assets/images/categories-images/courier-icon.png'),
+    title: 'Courier services',
+    icon: CategoryCourier,
   },
   {
-    content: 'Interior design',
-    icon: require('src/assets/images/categories-images/interior-icon.png'),
+    title: 'Interior design',
+    icon: CategoryInterior,
   },
 ];
 
 export const Categories = () => {
-  const renderDarkButton = (item, index) => (
-    <TouchableOpacity style={styles.button} key={index}>
-      <View style={styles.wrapper}>
-        <Image source={item.icon} style={styles.buttonImage} />
-      </View>
-      <Row style={styles.contentWrapper}>
-        <Text extraStyles={styles.title}>{item.content}</Text>
-        <Button
-          icon={require('src/assets/images/arrow-right.png')}
-          extraStyles={styles.buttonArray}
-        />
-      </Row>
-    </TouchableOpacity>
-  );
+  const renderDarkButton = (item, index) => {
+    const Icon = item.icon;
+    return (
+      <TouchableOpacity style={styles.button} key={index}>
+        <View style={styles.wrapper}>
+          <Icon width={25} height={27} />
+        </View>
+        <Row style={styles.contentWrapper}>
+          <Text extraStyles={styles.title}>{item.title}</Text>
+          <Button icon={ArrowRight} extraStyles={styles.buttonArray} />
+        </Row>
+      </TouchableOpacity>
+    );
+  };
   return (
     <KeyboardAwareScrollView>
       <Input placeholder="Search by category" icon="search" />
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: COLORS.PRIMARY,
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     flexDirection: 'row',
     marginVertical: 5,
   },
@@ -89,11 +97,6 @@ const styles = StyleSheet.create({
   buttonArray: {
     backgroundColor: COLORS.PRIMARY,
     width: '20%',
-  },
-  buttonImage: {
-    width: 25,
-    height: 27,
-    alignSelf: 'center',
   },
   wrapper: {
     width: '25%',
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
   },
   buttonStyles: {
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     backgroundColor: COLORS.TRANSPARENT,
   },
 });

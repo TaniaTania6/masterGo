@@ -5,7 +5,7 @@ import {COLORS} from 'src/constants';
 export const Text = ({extraStyles, title, ...props}) => {
   return (
     <NativeText
-      style={title ? [styles.title, extraStyles] : [styles.text, extraStyles]}
+      style={[title ? styles.title : styles.text, extraStyles]}
       {...props}
     />
   );

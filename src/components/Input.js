@@ -23,7 +23,7 @@ export const Input = ({icon, onIconPress, ...props}) => {
   const renderIcon = () => (
     <Pressable
       onPress={onIconPress}
-      style={icon !== 'search' ? styles.icon : [styles.icon, styles.leftIcon]}>
+      style={[styles.icon, icon === 'search' && styles.leftIcon]}>
       {React.createElement(icons[icon], {
         width: ICON_WIDTH,
         height: ICON_HEIGHT,
@@ -38,7 +38,7 @@ export const Input = ({icon, onIconPress, ...props}) => {
           styles.inputContainer,
           icon === 'search' && styles.iconLeftPadding,
         ]}>
-        {icon === 'search' && icons[icon] && renderIcon()}
+        {icon === 'search' && renderIcon()}
         <NativeTextInput
           style={[
             styles.textInput,

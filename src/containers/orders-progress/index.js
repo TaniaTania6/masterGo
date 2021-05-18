@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   choiceButton: {
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     backgroundColor: COLORS.TRANSPARENT,
   },
   buttonsContainer: {

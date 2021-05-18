@@ -14,12 +14,19 @@ import {
   Row,
   KeyboardAwareScrollView,
 } from 'src/components';
-import {COLORS, ROUTES} from 'src/constants';
+import {ROUTES} from 'src/constants';
+import {Linkedin, Twitter, Facebook} from 'src/assets/svg';
 
 export const SignUp = ({navigation}) => {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const handlePasswordVisibility = () => {
     setVisiblePassword(!visiblePassword);
+  };
+  const handleLinkOpening = link => () => {
+    Linking.openURL(link);
+  };
+  const handleNavigate = route => () => {
+    navigation.navigate(route);
   };
   return (
     <KeyboardAvoidingView
@@ -48,45 +55,32 @@ export const SignUp = ({navigation}) => {
             secureTextEntry={!visiblePassword}
             textContentType="password"
           />
-          <Button
-            onPress={() => {
-              navigation.navigate(ROUTES.APP);
-            }}
-            text="Sign Up"
-          />
+          <Button onPress={handleNavigate(ROUTES.APP)} text="Sign Up" />
           <Text>or</Text>
           <Row style={styles.buttonContainer}>
             <Button
               theme="social"
-              icon={require('src/assets/images/social/facebook.png')}
-              onPress={() => {
-                Linking.openURL('https://www.facebook.com/');
-              }}
+              icon={Facebook}
+              onPress={handleLinkOpening('https://www.facebook.com/')}
             />
             <Button
               theme="social"
-              icon={require('src/assets/images/social/twitter.png')}
-              onPress={() => {
-                Linking.openURL('https://www.twitter.com/');
-              }}
+              icon={Twitter}
+              onPress={handleLinkOpening('https://www.twitter.com/')}
             />
             <Button
               theme="social"
-              icon={require('src/assets/images/social/linkedin.png')}
-              onPress={() => {
-                Linking.openURL('https://www.linkedin.com/');
-              }}
+              icon={Linkedin}
+              onPress={handleLinkOpening('https://www.linkedin.com/')}
             />
           </Row>
           <Row style={styles.choiceContainer}>
             <Text>Already have an account?</Text>
             <Button
-              theme="noBorder"
+              theme="plain"
               text="Sign In"
-              extraStyles={styles.noBorderButton}
-              onPress={() => {
-                navigation.navigate(ROUTES.SIGN_IN);
-              }}
+              extraStyles={styles.plainButton}
+              onPress={handleNavigate(ROUTES.SIGN_IN)}
             />
           </Row>
         </View>
@@ -115,7 +109,7 @@ const styles = StyleSheet.create({
   choiceContainer: {
     marginTop: 10,
   },
-  noBorderButton: {
+  plainButton: {
     marginLeft: 10,
   },
 });

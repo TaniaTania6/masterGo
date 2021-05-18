@@ -6,6 +6,7 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {Text, Button} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 import {dimensions} from 'src/styles';
+import {Plus} from 'src/assets/svg';
 
 const AUTOPLAY_DELAY = 3000;
 
@@ -95,7 +96,7 @@ export const Onboarding = ({navigation}) => {
           onPress={handleButtonPress}
           extraStyles={{marginBottom: insets.bottom + 20}}
           theme="circle"
-          icon={require('src/assets/images/plus.png')}
+          icon={Plus}
           iconStyle={styles.plusButton}
         />
       ) : (

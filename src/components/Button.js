@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from 'src/components';
 import {COLORS} from 'src/constants';
 
@@ -19,22 +19,23 @@ export const Button = ({
       case 'circle':
         return [styles.circleButton, styles.primaryText];
       case 'social':
-        return [styles.socialBtn, styles.primaryText];
-      case 'noBorder':
-        return [styles.noBorderBtn, styles.orangeText];
+        return [styles.socialButton, styles.primaryText];
+      case 'plain':
+        return [styles.plainButton, styles.orangeText];
       case 'small':
-        return [styles.smallBtn, styles.primaryText];
+        return [styles.smallButton, styles.primaryText];
       default:
         return [styles.primaryButton, styles.primaryText];
     }
   }, [theme]);
+  const Icon = icon;
 
   return (
     <TouchableOpacity
       style={[styles.button, buttonStyles, extraStyles]}
       onPress={onPress}
       activeOpacity={0.8}>
-      {icon && <Image source={icon} styles={iconStyle} />}
+      {icon && <Icon width={17} height={17} />}
       {text && (
         <Text extraStyles={[styles.text, textStyles, extraTextStyles]}>
           {text}
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   transparentButton: {
     backgroundColor: COLORS.TRANSPARENT,
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
   },
   circleButton: {
     backgroundColor: COLORS.TURQUOISE,
@@ -66,17 +67,17 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     justifyContent: 'center',
   },
-  socialBtn: {
+  socialButton: {
     backgroundColor: COLORS.PRIMARY,
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     flex: 0.32,
     alignItems: 'center',
   },
-  noBorderBtn: {
+  plainButton: {
     backgroundColor: COLORS.TRANSPARENT,
   },
-  smallBtn: {
+  smallButton: {
     backgroundColor: COLORS.TURQUOISE,
     width: '48%',
   },
