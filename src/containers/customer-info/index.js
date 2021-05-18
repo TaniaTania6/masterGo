@@ -51,15 +51,15 @@ export const CustomerInfo = () => {
     return (
       <>
         <View>
-          {isLoader ? (
+          {/* {isLoader ? (
             <ActivityIndicator size="large" color={COLORS.ORANGE} />
-          ) : (
+          ) : ( */}
             <Image
               source={activeSource}
               style={styles.slideImage}
               onLoad={() => setIsLoader(false)}
             />
-          )}
+          {/* )} */}
         </View>
       </>
     );
@@ -75,7 +75,6 @@ export const CustomerInfo = () => {
       <Row>
         <Carousel
           data={data}
-          // extraData={data}
           renderItem={renderItem}
           sliderWidth={dimensions.windowWidth}
           itemWidth={dimensions.windowWidth}
@@ -112,7 +111,7 @@ export const CustomerInfo = () => {
           text="Read more"
           theme="noBorder"
           extraStyles={styles.button}
-          onPress={() => changeTextVolume()}
+          onPress={changeTextVolume}
         />
       </View>
     </ScrollView>

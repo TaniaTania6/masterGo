@@ -42,7 +42,7 @@ const items = [
 export const OrdersInProgress = () => {
   const insets = useSafeAreaInsets();
   const renderItem = ({item}) => (
-    <View style={[styles.block, item.type && styles.adjustment]}>
+    <View style={[styles.itemContainer, item.type && styles.adjustment]}>
       <Image source={item.icon} />
       <Text extraStyles={styles.title}>{item.name}</Text>
       <Text>{item.price}</Text>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   adjustment: {
     alignSelf: 'flex-end',
   },
-  block: {
+  temContainer: {
     width: (dimensions.windowWidth - dimensions.HORIZONTAL_PADDING * 2) / 2,
     alignItems: 'center',
     marginBottom: 5,

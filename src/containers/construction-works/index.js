@@ -9,7 +9,7 @@ import {
 } from 'src/components';
 import {COLORS} from 'src/constants';
 
-const btnInfo = [
+const buttonInfo = [
   {
     content: 'Welding works',
     active: true,
@@ -36,14 +36,14 @@ const btnInfo = [
   },
 ];
 export const ConstructionWorks = () => {
-  const [statesArray, setStatesArray] = useState(btnInfo);
+  const [statusArray, setStatusArray] = useState(buttonInfo);
 
   const changeState = (status, index) => {
-    const changedData = statesArray.map((item, ind) => {
+    const changedData = statusArray.map((item, ind) => {
       let result = ind === index ? {...item, active: !status} : {...item};
       return result;
     });
-    setStatesArray(changedData);
+    setStatusArray(changedData);
   };
   const renderButton = (item, index) => {
     return (
@@ -72,7 +72,7 @@ export const ConstructionWorks = () => {
     <KeyboardAwareScrollView>
       <Input placeholder="Search by category" icon="search" />
       <View style={styles.container}>
-        {statesArray.map((item, index) => renderButton(item, index))}
+        {statusArray.map((item, index) => renderButton(item, index))}
       </View>
       <Row style={styles.buttonsContainer}>
         <Button

@@ -51,7 +51,7 @@ export const SignIn = ({navigation}) => {
             text="Login"
           />
           <Text>or</Text>
-          <Row style={styles.btnContainer}>
+          <Row style={styles.buttonContainer}>
             <Button
               theme="social"
               icon={require('src/assets/images/social/facebook.png')}
@@ -79,7 +79,7 @@ export const SignIn = ({navigation}) => {
             <Button
               theme="noBorder"
               text="Sign Up"
-              extraStyles={styles.noBorderBtn}
+              extraStyles={styles.noBorderButton}
               onPress={() => {
                 handleNavigate(ROUTES.SIGN_UP);
               }}
@@ -105,17 +105,13 @@ const styles = StyleSheet.create({
     width: 100,
     marginBottom: 20,
   },
-  textBtn: {
-    color: COLORS.WHITE,
-    lineHeight: 19,
-  },
-  btnContainer: {
+  buttonContainer: {
     width: '100%',
   },
   choiceContainer: {
     marginTop: 10,
   },
-  noBorderBtn: {
+  noBorderButton: {
     marginLeft: 10,
   },
   forgotLine: {

@@ -61,7 +61,7 @@ export const Onboarding = ({navigation}) => {
     setActiveSource(slides[idx].source);
   };
 
-  const handleBtnPress = () => {
+  const handleButtonPress = () => {
     activeSlide === 3
       ? navigation.navigate(ROUTES.AUTH)
       : handlerSnapToItem(activeSlide + 1);
@@ -92,7 +92,7 @@ export const Onboarding = ({navigation}) => {
       </View>
       {activeSlide === 3 ? (
         <Button
-          onPress={handleBtnPress}
+          onPress={handleButtonPress}
           extraStyles={{marginBottom: insets.bottom + 20}}
           theme="circle"
           icon={require('src/assets/images/plus.png')}
@@ -100,7 +100,7 @@ export const Onboarding = ({navigation}) => {
         />
       ) : (
         <Button
-          onPress={handleBtnPress}
+          onPress={handleButtonPress}
           extraStyles={{marginBottom: insets.bottom + 20}}
           text="Next"
         />

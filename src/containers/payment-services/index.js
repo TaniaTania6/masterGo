@@ -57,7 +57,7 @@ export const PaymentServices = () => {
         renderItem={renderService}
         keyExtractor={item => item.content}
         ListFooterComponent={renderFooter}
-        ListFooterComponentStyle={styles.block}
+        ListFooterComponentStyle={styles.footerStyles}
       />
       <Button text="Checkout" />
       <Button text="Continue Shopping" theme="noBorder" />
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.GRIZZLE,
     marginBottom: 25,
   },
-  block: {
+  footerStyles: {
     marginTop: 40,
   },
 });

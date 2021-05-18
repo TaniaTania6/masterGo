@@ -10,7 +10,7 @@ import {
 
 import {COLORS} from 'src/constants';
 
-const btnInfo = [
+const buttonInfo = [
   {
     content: 'Furniture works',
     icon: require('src/assets/images/categories-images/furniture-icon.png'),
@@ -34,16 +34,16 @@ const btnInfo = [
 ];
 
 export const Categories = () => {
-  const renderDarkBtn = (item, index) => (
-    <TouchableOpacity style={styles.btn} key={index}>
-      <View style={styles.greyBlock}>
-        <Image source={item.icon} style={styles.btnImg} />
+  const renderDarkButton = (item, index) => (
+    <TouchableOpacity style={styles.button} key={index}>
+      <View style={styles.wrapper}>
+        <Image source={item.icon} style={styles.buttonImage} />
       </View>
-      <Row style={styles.contentBlock}>
-        <Text extraStyles={styles.greyText}>{item.content}</Text>
+      <Row style={styles.contentWrapper}>
+        <Text extraStyles={styles.title}>{item.content}</Text>
         <Button
           icon={require('src/assets/images/arrow-right.png')}
-          extraStyles={styles.arrayBtn}
+          extraStyles={styles.buttonArray}
         />
       </Row>
     </TouchableOpacity>
@@ -51,13 +51,13 @@ export const Categories = () => {
   return (
     <KeyboardAwareScrollView>
       <Input placeholder="Search by category" icon="search" />
-      <View style={styles.categoriesBlock}>
-        {btnInfo.map((item, index) => renderDarkBtn(item, index))}
+      <View style={styles.categoriesWrapper}>
+        {buttonInfo.map((item, index) => renderDarkButton(item, index))}
       </View>
-      <Row style={styles.btnContainer}>
+      <Row style={styles.buttonContainer}>
         <Button
-          extraStyles={styles.transparentBtn}
-          extraTextStyles={styles.greyText}
+          extraStyles={styles.buttonStyles}
+          extraTextStyles={styles.title}
           text="Back"
           theme="small"
         />
@@ -68,43 +68,43 @@ export const Categories = () => {
 };
 
 const styles = StyleSheet.create({
-  btnContainer: {
+  buttonContainer: {
     width: '100%',
   },
-  categoriesBlock: {
+  categoriesWrapper: {
     marginVertical: 30,
     width: '100%',
   },
-  btn: {
+  button: {
     backgroundColor: COLORS.PRIMARY,
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
     flexDirection: 'row',
     marginVertical: 5,
   },
-  contentBlock: {
+  contentWrapper: {
     flex: 1,
     paddingLeft: '5%',
   },
-  arrayBtn: {
+  buttonArray: {
     backgroundColor: COLORS.PRIMARY,
     width: '20%',
   },
-  btnImg: {
+  buttonImage: {
     width: 25,
     height: 27,
     alignSelf: 'center',
   },
-  greyBlock: {
+  wrapper: {
     width: '25%',
     backgroundColor: COLORS.GREY_LIGHTER,
     padding: 23,
     justifyContent: 'center',
   },
-  greyText: {
+  title: {
     color: COLORS.GREY_DARK,
   },
-  transparentBtn: {
+  buttonStyles: {
     borderWidth: 1,
     borderColor: COLORS.BTN_BORDER,
     backgroundColor: COLORS.TRANSPARENT,

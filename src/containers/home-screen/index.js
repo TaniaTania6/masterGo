@@ -5,26 +5,26 @@ import {Text, Button, Row} from 'src/components';
 
 import {COLORS} from 'src/constants';
 
-const btnInfo = [
+const buttonInfo = [
   {
     title: 'Phone number',
-    data: '+3746589923',
+    phone: '+3746589923',
     icon: require('src/assets/images/btn-images/phone.png'),
   },
   {
     title: 'Email',
-    data: 'conrad@gmail.com',
+    phone: 'conrad@gmail.com',
     icon: require('src/assets/images/btn-images/email.png'),
   },
   {
     title: 'Completed projects',
-    data: '248',
+    phone: '248',
     icon: require('src/assets/images/btn-images/point.png'),
   },
 ];
 export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
-  const renderDarkBtn = item => {
+  const renderDarkButton = item => {
     return (
       <TouchableOpacity style={styles.button} key={item.title}>
         <View style={styles.imageContainer}>
@@ -33,7 +33,7 @@ export const HomeScreen = () => {
         <View style={styles.line} />
         <View style={styles.textWrapper}>
           <Text extraStyles={styles.buttonTitle}>{item.title}</Text>
-          <Text extraStyles={styles.buttonText}>{item.data}</Text>
+          <Text extraStyles={styles.buttonText}>{item.phone}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -65,7 +65,7 @@ export const HomeScreen = () => {
       </View>
       <View
         style={[styles.contactsWrapper, {paddingBottom: insets.bottom + 20}]}>
-        {btnInfo.map(item => renderDarkBtn(item))}
+        {buttonInfo.map(item => renderDarkButton(item))}
       </View>
     </View>
   );
