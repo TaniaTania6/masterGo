@@ -4,8 +4,10 @@ import {Text} from 'src/components';
 import {COLORS} from 'src/constants';
 
 export const Button = ({
-  text,
+  children,
   theme = 'primary',
+  fontWeight,
+  fontVariant,
   icon,
   iconStyle = {},
   extraStyles = {},
@@ -36,9 +38,12 @@ export const Button = ({
       onPress={onPress}
       activeOpacity={0.8}>
       {icon && <Icon width={17} height={17} />}
-      {text && (
-        <Text extraStyles={[styles.text, textStyles, extraTextStyles]}>
-          {text}
+      {children && (
+        <Text
+          extraStyles={[textStyles, extraTextStyles]}
+          fontWeight={fontWeight}
+          fontVariant={fontVariant}>
+          {children}
         </Text>
       )}
     </TouchableOpacity>

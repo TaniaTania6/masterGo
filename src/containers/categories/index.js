@@ -47,10 +47,10 @@ export const Categories = () => {
     return (
       <TouchableOpacity style={styles.button} key={index}>
         <View style={styles.wrapper}>
-          <Icon width={25} height={27} />
+          <Icon width={25} height={25} />
         </View>
         <Row style={styles.contentWrapper}>
-          <Text extraStyles={styles.title}>{item.title}</Text>
+          <Text>{item.title}</Text>
           <Button icon={ArrowRight} extraStyles={styles.buttonArray} />
         </Row>
       </TouchableOpacity>
@@ -66,10 +66,10 @@ export const Categories = () => {
         <Button
           extraStyles={styles.buttonStyles}
           extraTextStyles={styles.title}
-          text="Back"
-          theme="small"
-        />
-        <Button text="Next" theme="small" />
+          theme="small">
+          Back
+        </Button>
+        <Button theme="small">Next</Button>
       </Row>
     </KeyboardAwareScrollView>
   );

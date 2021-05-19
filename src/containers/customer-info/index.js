@@ -66,10 +66,14 @@ export const CustomerInfo = () => {
   };
   return (
     <ScrollView style={styles.container}>
-      <Text extraStyles={styles.title} title>
+      <Text
+        extraStyles={styles.title}
+        fontWeight="medium"
+        fontVariant="subtitle"
+        title>
         Portfolio
       </Text>
-      <Text extraStyles={styles.text}>
+      <Text extraStyles={styles.text} fontVariant="label">
         The last completed works of the contractor are shown below.
       </Text>
       <Row>
@@ -101,18 +105,24 @@ export const CustomerInfo = () => {
         />
       </View>
       <View>
-        <Text extraStyles={[styles.title, styles.detailsTitle]} title>
+        <Text
+          extraStyles={[styles.title, styles.detailsTitle]}
+          fontVariant="subtitle"
+          fontWeight="medium"
+          title>
           Details
         </Text>
-        <Text extraStyles={[styles.text, styles.detailsText]}>
+        <Text
+          extraStyles={[styles.text, styles.detailsText]}
+          fontVariant="label">
           {detailsContent}
         </Text>
         <Button
-          text="Read more"
           theme="plain"
           extraStyles={styles.button}
-          onPress={changeTextVolume}
-        />
+          onPress={changeTextVolume}>
+          Read more
+        </Button>
       </View>
     </ScrollView>
   );
@@ -122,23 +132,23 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     paddingHorizontal: dimensions.HORIZONTAL_PADDING,
+    paddingVertical: dimensions.VERTICAL_PADDING,
   },
   title: {
-    fontSize: 24,
     textAlign: 'left',
+    lineHeight: 27,
   },
   text: {
-    fontSize: 14,
     lineHeight: 24,
     textAlign: 'left',
-    marginVertical: 15,
+    marginVertical: 10,
   },
   detailsText: {
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   detailsTitle: {
-    marginTop: 45,
+    marginTop: 40,
   },
   slideImage: {
     width: '65%',

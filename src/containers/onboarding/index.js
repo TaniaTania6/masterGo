@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -6,6 +6,10 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {Text, Button} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
 import {dimensions} from 'src/styles';
+import {
+  checkAndroidLocationPermission,
+  checkAndroidReadContactsPermission,
+} from 'src/utils/permissions';
 import {Plus} from 'src/assets/svg';
 
 const AUTOPLAY_DELAY = 3000;
@@ -38,6 +42,9 @@ export const Onboarding = ({navigation}) => {
   const [activeTitle, setActiveTitle] = useState(slides[activeSlide].title);
   const [activeText, setActiveText] = useState(slides[activeSlide].text);
   const [activeSource, setActiveSource] = useState(slides[activeSlide].source);
+  useEffect(() => {
+    checkAndroidLocationPermission();
+  }, []);
 
   const insets = useSafeAreaInsets();
 
@@ -45,7 +52,11 @@ export const Onboarding = ({navigation}) => {
     return (
       <View style={styles.slideContainer}>
         <View key={index} style={styles.flexContainer}>
-          <Text extraStyles={styles.textStyles} title>
+          <Text
+            extraStyles={styles.textStyles}
+            fontVariant="title"
+            fontWeight="medium"
+            title>
             {activeTitle}
           </Text>
           <Image source={activeSource} style={styles.image} />
@@ -102,9 +113,9 @@ export const Onboarding = ({navigation}) => {
       ) : (
         <Button
           onPress={handleButtonPress}
-          extraStyles={{marginBottom: insets.bottom + 20}}
-          text="Next"
-        />
+          extraStyles={{marginBottom: insets.bottom + 20}}>
+          Next
+        </Button>
       )}
     </View>
   );

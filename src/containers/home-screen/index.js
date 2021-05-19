@@ -34,8 +34,15 @@ export const HomeScreen = () => {
         </View>
         <View style={styles.line} />
         <View style={styles.textWrapper}>
-          <Text extraStyles={styles.buttonTitle}>{item.title}</Text>
-          <Text extraStyles={styles.buttonText}>{item.phone}</Text>
+          <Text fontVariant="p" fontWeight="normal">
+            {item.title}
+          </Text>
+          <Text
+            extraStyles={styles.buttonText}
+            fontVariant="p"
+            fontWeight="normal">
+            {item.phone}
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -49,20 +56,24 @@ export const HomeScreen = () => {
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <Text extraStyles={styles.name} title>
+          <Text
+            extraStyles={styles.name}
+            fontVariant="subtitle"
+            fontWeight="medium"
+            title>
             Jeremías del Pozo
           </Text>
           <Text>New York • ID: 1120611</Text>
         </View>
-        <Button theme="plain" text="Edit" />
+        <Button theme="plain">Edit</Button>
         <Row style={styles.buttonsContainer}>
           <Button
             extraStyles={styles.choiceButton}
             extraTextStyles={styles.buttonTitle}
-            text="About Me"
-            theme="small"
-          />
-          <Button text="Reviews" theme="small" />
+            theme="small">
+            About Me
+          </Button>
+          <Button theme="small">Reviews</Button>
         </Row>
       </View>
       <View
@@ -111,7 +122,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   name: {
-    fontSize: 24,
     lineHeight: 28,
     paddingBottom: 5,
   },

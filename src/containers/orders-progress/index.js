@@ -68,10 +68,10 @@ export const OrdersInProgress = () => {
         <Button
           extraStyles={styles.choiceButton}
           extraTextStyles={styles.buttonTitle}
-          text="Archive"
-          theme="small"
-        />
-        <Button text="Reviews" theme="small" />
+          theme="small">
+          Archive
+        </Button>
+        <Button theme="small">Reviews</Button>
       </Row>
     </>
   );

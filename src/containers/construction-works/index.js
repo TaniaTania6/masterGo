@@ -50,7 +50,7 @@ export const ConstructionWorks = () => {
     return (
       <TouchableOpacity style={styles.button} key={index}>
         <Row style={styles.contentContainer}>
-          <Text extraStyles={styles.title}>{item.title}</Text>
+          <Text>{item.title}</Text>
           <Button
             extraStyles={[
               styles.widthStyles,
@@ -73,10 +73,10 @@ export const ConstructionWorks = () => {
         <Button
           extraStyles={styles.buttonStyles}
           extraTextStyles={styles.title}
-          text="Skip"
-          theme="small"
-        />
-        <Button text="Done" theme="small" />
+          theme="small">
+          Skip
+        </Button>
+        <Button theme="small">Done</Button>
       </Row>
     </KeyboardAwareScrollView>
   );

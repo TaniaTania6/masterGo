@@ -48,7 +48,7 @@ export const SignIn = ({navigation}) => {
             textContentType="password"
           />
           <Text extraStyles={styles.forgotLine}>Forgot your password?</Text>
-          <Button onPress={handleNavigate(ROUTES.APP)} text="Login" />
+          <Button onPress={handleNavigate(ROUTES.APP)}>Login</Button>
           <Text>or</Text>
           <Row style={styles.buttonContainer}>
             <Button
@@ -71,10 +71,10 @@ export const SignIn = ({navigation}) => {
             <Text>Don't have an account?</Text>
             <Button
               theme="plain"
-              text="Sign Up"
               extraStyles={styles.plainButton}
-              onPress={handleNavigate(ROUTES.SIGN_UP)}
-            />
+              onPress={handleNavigate(ROUTES.SIGN_UP)}>
+              Sign Up
+            </Button>
           </Row>
         </View>
       </KeyboardAwareScrollView>

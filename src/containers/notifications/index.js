@@ -57,10 +57,12 @@ export const Notifications = () => {
         <Image source={item.icon} />
         <View style={styles.textContainer}>
           <Text extraStyles={styles.name}>{item.name}</Text>
-          <Text extraStyles={styles.company}>{item.company}</Text>
+          <Text fontVariant="label">{item.company}</Text>
         </View>
       </View>
-      <Text extraStyles={styles.description}>{item.description}</Text>
+      <Text extraStyles={styles.description} fontVariant="label">
+        {item.description}
+      </Text>
     </View>
   );
   return (
@@ -71,12 +73,12 @@ export const Notifications = () => {
             .filter((item, index) => index < 3)
             .map((item, index) => renderItem(item, index))}
       <Button
-        text={isShowAll ? 'Hide' : 'View all'}
         onPress={showAllNotifications}
         extraStyles={{
           marginBottom: insets.bottom || dimensions.VERTICAL_PADDING,
-        }}
-      />
+        }}>
+        {isShowAll ? 'Hide' : 'View all'}
+      </Button>
     </ScrollView>
   );
 };
@@ -101,11 +103,7 @@ const styles = StyleSheet.create({
   name: {
     color: COLORS.GREY_DARKER,
   },
-  company: {
-    fontSize: 14,
-  },
   description: {
-    fontSize: 14,
     color: COLORS.GREY_DEEPER,
     lineHeight: 24,
     textAlign: 'left',

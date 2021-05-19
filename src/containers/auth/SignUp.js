@@ -55,7 +55,7 @@ export const SignUp = ({navigation}) => {
             secureTextEntry={!visiblePassword}
             textContentType="password"
           />
-          <Button onPress={handleNavigate(ROUTES.APP)} text="Sign Up" />
+          <Button onPress={handleNavigate(ROUTES.APP)}>Sign Up</Button>
           <Text>or</Text>
           <Row style={styles.buttonContainer}>
             <Button
@@ -78,10 +78,10 @@ export const SignUp = ({navigation}) => {
             <Text>Already have an account?</Text>
             <Button
               theme="plain"
-              text="Sign In"
               extraStyles={styles.plainButton}
-              onPress={handleNavigate(ROUTES.SIGN_IN)}
-            />
+              onPress={handleNavigate(ROUTES.SIGN_IN)}>
+              Sign In
+            </Button>
           </Row>
         </View>
       </KeyboardAwareScrollView>

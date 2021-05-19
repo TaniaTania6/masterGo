@@ -34,7 +34,7 @@ export const PaymentServices = () => {
     <Row style={styles.row}>
       <Image source={item.img} style={styles.image} />
       <Text>{item.title}</Text>
-      <Text extraStyles={styles.price} title>
+      <Text extraStyles={styles.price} fontVariant="subtitle" title>
         {item.price}
       </Text>
     </Row>
@@ -59,8 +59,8 @@ export const PaymentServices = () => {
         ListFooterComponent={renderFooter}
         ListFooterComponentStyle={styles.footerStyles}
       />
-      <Button text="Checkout" />
-      <Button text="Continue Shopping" theme="plain" />
+      <Button>Checkout</Button>
+      <Button theme="plain">Continue Shopping</Button>
     </View>
   );
 };
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     marginRight: '5%',
   },
   price: {
-    fontSize: 24,
     flexGrow: 1,
     textAlign: 'right',
   },
