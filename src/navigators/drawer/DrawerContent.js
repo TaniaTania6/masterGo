@@ -1,70 +1,129 @@
 import React, {useState} from 'react';
-import {Image, FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView, View, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Button, TextComponent} from 'src/components';
+import {Button, Text} from 'src/components';
+import {LeftButton} from 'src/navigators/options';
 import {COLORS, ROUTES} from 'src/constants';
+import {notch} from 'src/styles';
+import {Home, Categories, Notifications, Orders} from 'src/assets/svg';
 
 const items = [
   {
     id: 1,
-    content: 'Home',
-    source: require('src/assets/images/drawer-images/1.png'),
+    title: 'Home',
+    source: Home,
     route: ROUTES.HOMESCREEN,
   },
   {
     id: 2,
-    content: 'Categories',
-    source: require('src/assets/images/drawer-images/2.png'),
+    title: 'Categories',
+    source: Categories,
     route: ROUTES.CATEGORIES,
   },
   {
     id: 3,
-    content: 'Notifications',
-    source: require('src/assets/images/drawer-images/4.png'),
+    title: 'Notifications',
+    source: Notifications,
     route: ROUTES.NOTIFICATIONS,
+  },
+  {
+    id: 4,
+    title: 'Orders in progress',
+    source: Orders,
+    route: ROUTES.ORDERS_IN_PROGRESS,
+  },
+  {
+    id: 5,
+    title: 'Construction works',
+    source: Orders,
+    route: ROUTES.CONSTRUCTION_WORKS,
+  },
+  {
+    id: 6,
+    title: 'Payment for services',
+    source: Orders,
+    route: ROUTES.PAYMENT_FOR_SERVICES,
+  },
+  {
+    id: 7,
+    title: 'Customer info',
+    source: Orders,
+    route: ROUTES.CUSTOMER_INFO,
   },
 ];
 
-const renderMenuItem = (onPress, item, activeId) => (
-  <>
-    <Button
-      onPress={() => onPress(item)}
-      style={
-        activeId === item.id ? [styles.btn, styles.activeBtn] : styles.btn
-      }>
-      <Image source={item.source} style={styles.image} />
-    </Button>
-    <TextComponent content={item.content} />
-  </>
-);
+const HEADER_HEIGHT_IOS = 45;
+const HEADER_HEIGHT_ANDROID = 55;
 
 export const DrawerContent = () => {
   const navigation = useNavigation();
   const [activeId, setActiveId] = useState(1);
+
+  const getHeaderHeight = () => {
+    let headerHeightPlatform;
+    let statusBarHeight;
+
+    if (Platform.OS === 'ios') {
+      headerHeightPlatform = HEADER_HEIGHT_IOS;
+    } else {
+      headerHeightPlatform = HEADER_HEIGHT_ANDROID;
+    }
+
+    statusBarHeight = notch.getStatusBarHeight(notch.isIphoneX());
+
+    return headerHeightPlatform + statusBarHeight;
+  };
 
   const handlePress = ({id, route}) => {
     setActiveId(id);
     navigation.navigate(route);
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={items}
-        renderItem={({item}) => renderMenuItem(handlePress, item, activeId)}
-        keyExtractor={item => item.id}
+  const renderMenuItem = (onPress, item, id) => (
+    <View style={styles.itemContainer}>
+      <Button
+        onPress={() => onPress(item)}
+        // extraStyles={
+        //   id === item.id ? [styles.btn, styles.activeBtn] : styles.btn
+        // }
+        extraStyles={[styles.btn, id === item.id && styles.activeBtn]}
+        iconStyle={styles.image}
+        icon={item.source}
       />
-    </SafeAreaView>
+      <Text>{item.title}</Text>
+    </View>
+  );
+
+  return (
+    <>
+      <View style={[styles.header, {height: getHeaderHeight()}]}>
+        <LeftButton
+          extraSource={require('src/assets/images/arrow-left-white.png')}
+        />
+      </View>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={items}
+          renderItem={({item}) => renderMenuItem(handlePress, item, activeId)}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.content}
+        />
+      </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  header: {
+    justifyContent: 'flex-end',
+    backgroundColor: COLORS.GREY_DARKER,
+  },
   container: {
     flex: 1,
-    flexDirection: 'row',
+    backgroundColor: COLORS.GREY_DARKER,
+  },
+  itemContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.GREY_DARK,
   },
   btn: {
     width: 75,
@@ -79,5 +138,8 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
+  },
+  content: {
+    paddingBottom: 20,
   },
 });

@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
-import {View, Dimensions, Image, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Image, StyleSheet} from 'react-native';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {TextComponent, Button} from 'src/components';
+import {Text, Button} from 'src/components';
 import {COLORS, ROUTES} from 'src/constants';
-
-const {width: WINDOW_WIDTH} = Dimensions.get('window');
-const {height: WINDOW_HEIGHT} = Dimensions.get('window');
+import {dimensions} from 'src/styles';
+import {
+  checkAndroidLocationPermission,
+  checkAndroidReadContactsPermission,
+} from 'src/utils/permissions';
+import {Plus} from 'src/assets/svg';
 
 const AUTOPLAY_DELAY = 3000;
 
@@ -39,22 +42,29 @@ export const Onboarding = ({navigation}) => {
   const [activeTitle, setActiveTitle] = useState(slides[activeSlide].title);
   const [activeText, setActiveText] = useState(slides[activeSlide].text);
   const [activeSource, setActiveSource] = useState(slides[activeSlide].source);
+  useEffect(() => {
+    checkAndroidLocationPermission();
+  }, []);
 
   const insets = useSafeAreaInsets();
 
-  const renderSlide = ({index}) => (
-    <View style={styles.slideContainer}>
-      <View key={index} style={styles.flexContainer}>
-        <TextComponent
-          content={activeTitle}
-          extraStyles={styles.extraStyles}
-          bigFormat
-        />
-        <Image source={activeSource} style={styles.image} />
+  const renderSlide = ({index}) => {
+    return (
+      <View style={styles.slideContainer}>
+        <View key={index} style={styles.flexContainer}>
+          <Text
+            extraStyles={styles.textStyles}
+            fontVariant="title"
+            fontWeight="medium"
+            title>
+            {activeTitle}
+          </Text>
+          <Image source={activeSource} style={styles.image} />
+        </View>
+        <Text>{activeText}</Text>
       </View>
-      <TextComponent content={activeText} />
-    </View>
-  );
+    );
+  };
 
   const handlerSnapToItem = idx => {
     setActiveSlide(idx);
@@ -63,7 +73,7 @@ export const Onboarding = ({navigation}) => {
     setActiveSource(slides[idx].source);
   };
 
-  const handleBtnPress = () => {
+  const handleButtonPress = () => {
     activeSlide === 3
       ? navigation.navigate(ROUTES.AUTH)
       : handlerSnapToItem(activeSlide + 1);
@@ -75,8 +85,8 @@ export const Onboarding = ({navigation}) => {
         <Carousel
           data={slides}
           renderItem={renderSlide}
-          sliderWidth={WINDOW_WIDTH}
-          itemWidth={WINDOW_WIDTH}
+          sliderWidth={dimensions.windowWidth}
+          itemWidth={dimensions.windowWidth}
           autoplayDelay={AUTOPLAY_DELAY}
           inactiveSlideOpacity={1}
           activeSlideOffset={0}
@@ -94,18 +104,17 @@ export const Onboarding = ({navigation}) => {
       </View>
       {activeSlide === 3 ? (
         <Button
-          onPress={handleBtnPress}
-          style={[{marginBottom: insets.bottom + 20}, styles.circleBtn]}>
-          <Image
-            source={require('src/assets/images/plus.png')}
-            styles={styles.textBtn}
-          />
-        </Button>
+          onPress={handleButtonPress}
+          extraStyles={{marginBottom: insets.bottom + 20}}
+          theme="circle"
+          icon={Plus}
+          iconStyle={styles.plusButton}
+        />
       ) : (
         <Button
-          onPress={handleBtnPress}
-          style={{marginBottom: insets.bottom + 20}}>
-          <TextComponent content="Next" extraStyles={styles.textBtn} />
+          onPress={handleButtonPress}
+          extraStyles={{marginBottom: insets.bottom + 20}}>
+          Next
         </Button>
       )}
     </View>
@@ -116,10 +125,11 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     paddingHorizontal: 30,
-    marginTop: 60,
+    alignItems: 'center',
   },
   flexContainer: {
     flex: 1,
+    justifyContent: 'center',
   },
   contentContainer: {
     flex: 1,
@@ -135,24 +145,17 @@ const styles = StyleSheet.create({
     width: 9,
     height: 9,
     borderRadius: 8,
-    backgroundColor: COLORS.PAGINATION_POINT_ACTIVE,
+    backgroundColor: COLORS.GREY_LIGHT,
   },
-  textBtn: {
+  plusButton: {
     color: COLORS.WHITE,
     lineHeight: 19,
   },
-  extraStyles: {
-    marginBottom: 60,
-  },
-  circleBtn: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+  textStyles: {
+    marginBottom: 40,
   },
   image: {
     width: 180,
-    height: WINDOW_HEIGHT < 700 ? 250 : 300,
+    height: dimensions.windowHeight < 700 ? 250 : 300,
   },
 });

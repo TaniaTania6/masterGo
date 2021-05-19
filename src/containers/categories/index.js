@@ -1,99 +1,115 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
-import {TextComponent, Button, Input, HalfButtons} from 'src/components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  Button,
+  Input,
+  Row,
+  KeyboardAwareScrollView,
+} from 'src/components';
 
 import {COLORS} from 'src/constants';
+import {
+  CategoryCleaning,
+  CategoryCourier,
+  CategoryEquipment,
+  CategoryFurniture,
+  CategoryInterior,
+  ArrowRight,
+} from 'src/assets/svg';
 
-const btnInfo = [
+const buttonInfo = [
   {
-    content1: 'Furniture works',
-    icon: require('src/assets/images/categories-images/1.png'),
+    title: 'Furniture works',
+    icon: CategoryFurniture,
   },
   {
-    content1: 'Cleaning services',
-    icon: require('src/assets/images/categories-images/2.png'),
+    title: 'Cleaning services',
+    icon: CategoryCleaning,
   },
   {
-    content1: 'Equipment repair',
-    icon: require('src/assets/images/categories-images/3.png'),
+    title: 'Equipment repair',
+    icon: CategoryEquipment,
   },
   {
-    content1: 'Courier services',
-    icon: require('src/assets/images/categories-images/4.png'),
+    title: 'Courier services',
+    icon: CategoryCourier,
   },
   {
-    content1: 'Interior design',
-    icon: require('src/assets/images/categories-images/5.png'),
+    title: 'Interior design',
+    icon: CategoryInterior,
   },
 ];
 
-const renderDarkBtn = (item, index) => (
-  <Button style={styles.btn} key={index}>
-    <View style={styles.greyBlock}>
-      <Image source={item.icon} style={styles.btnImg} />
-    </View>
-    <View style={styles.contentBlock}>
-      <TextComponent content={item.content1} extraStyles={styles.greyText} />
-      <Button style={styles.arrayBtn}>
-        <Icon name="chevron-right" size={25} color={COLORS.GREY_DARK} />
-      </Button>
-    </View>
-  </Button>
-);
-
-export const Categories = () => (
-  <View style={styles.container}>
-    <Input placeholder="Search by category" />
-    <View style={[styles.categoriesBlock]}>
-      {btnInfo.map((item, index) => renderDarkBtn(item, index))}
-    </View>
-    <HalfButtons content1="Back" content2="Next" />
-  </View>
-);
+export const Categories = () => {
+  const renderDarkButton = (item, index) => {
+    const Icon = item.icon;
+    return (
+      <TouchableOpacity style={styles.button} key={index}>
+        <View style={styles.wrapper}>
+          <Icon width={25} height={25} />
+        </View>
+        <Row style={styles.contentWrapper}>
+          <Text>{item.title}</Text>
+          <Button icon={ArrowRight} extraStyles={styles.buttonArray} />
+        </Row>
+      </TouchableOpacity>
+    );
+  };
+  return (
+    <KeyboardAwareScrollView>
+      <Input placeholder="Search by category" icon="search" />
+      <View style={styles.categoriesWrapper}>
+        {buttonInfo.map((item, index) => renderDarkButton(item, index))}
+      </View>
+      <Row style={styles.buttonContainer}>
+        <Button
+          extraStyles={styles.buttonStyles}
+          extraTextStyles={styles.title}
+          theme="small">
+          Back
+        </Button>
+        <Button theme="small">Next</Button>
+      </Row>
+    </KeyboardAwareScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 30,
-    justifyContent: 'center',
-    paddingTop: 20,
+  buttonContainer: {
+    width: '100%',
   },
-  categoriesBlock: {
+  categoriesWrapper: {
     marginVertical: 30,
     width: '100%',
   },
-  btn: {
+  button: {
     backgroundColor: COLORS.PRIMARY,
     borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
+    borderColor: COLORS.BUTTON_BORDER,
     flexDirection: 'row',
-    paddingVertical: 0,
     marginVertical: 5,
   },
-  contentBlock: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  contentWrapper: {
     flex: 1,
-    justifyContent: 'space-between',
     paddingLeft: '5%',
   },
-  arrayBtn: {
+  buttonArray: {
     backgroundColor: COLORS.PRIMARY,
     width: '20%',
   },
-  btnImg: {
-    width: 25,
-    height: 25,
-    alignSelf: 'center',
-  },
-  greyBlock: {
+  wrapper: {
     width: '25%',
-    backgroundColor: COLORS.GREY_INPUT,
-    padding: 10,
+    backgroundColor: COLORS.GREY_LIGHTER,
+    padding: 23,
     justifyContent: 'center',
   },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
+  title: {
+    color: COLORS.GREY_DARK,
+  },
+  buttonStyles: {
+    borderWidth: 1,
+    borderColor: COLORS.BUTTON_BORDER,
+    backgroundColor: COLORS.TRANSPARENT,
   },
 });

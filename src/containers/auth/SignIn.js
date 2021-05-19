@@ -1,114 +1,112 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Image,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Linking,
 } from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Input, Button, TextComponent} from 'src/components';
-import {COLORS, ROUTES} from 'src/constants';
+import {
+  Input,
+  Button,
+  Text,
+  Row,
+  KeyboardAwareScrollView,
+} from 'src/components';
+import {ROUTES} from 'src/constants';
+import {Linkedin, Twitter, Facebook} from 'src/assets/svg';
 
 export const SignIn = ({navigation}) => {
-  const insets = useSafeAreaInsets();
+  const [visiblePassword, setVisiblePassword] = useState(false);
+  const handleNavigate = route => () => {
+    navigation.navigate(route);
+  };
+  const handlePasswordVisibility = () => {
+    setVisiblePassword(!visiblePassword);
+  };
+  const handleLinkOpening = link => () => {
+    Linking.openURL(link);
+  };
   return (
     <KeyboardAvoidingView
       style={styles.screen}
-      behavior={Platform.select({ios: 'padding', default: 'height'})}>
-      <View style={styles.container}>
-        <Image
-          source={require('src/assets/images/signIn.png')}
-          style={styles.image}
-        />
-        <Input placeholder="Username" />
-        <Input placeholder="Password" keyboardType="numeric" icon="eye" />
-        <TextComponent
-          content="Forgot your password?"
-          extraStyles={styles.forgotLine}
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate(ROUTES.APP);
-          }}>
-          <TextComponent content="Login" extraStyles={styles.textBtn} />
-        </Button>
-        <TextComponent content="or" />
-        <View style={styles.btnContainer}>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/1.png')} />
-          </Button>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/2.png')} />
-          </Button>
-          <Button style={styles.socialBtn}>
-            <Image source={require('src/assets/images/social/3.png')} />
-          </Button>
+      behavior={Platform.select({ios: 'padding', default: undefined})}>
+      <KeyboardAwareScrollView>
+        <View style={styles.container}>
+          <Image
+            source={require('src/assets/images/signIn.png')}
+            style={styles.image}
+          />
+          <Input placeholder="Username" textContentType="name" />
+          <Input
+            placeholder="Password"
+            keyboardType="number-pad"
+            icon={visiblePassword ? 'eye' : 'eye-closed'}
+            onIconPress={handlePasswordVisibility}
+            secureTextEntry={!visiblePassword}
+            textContentType="password"
+          />
+          <Text extraStyles={styles.forgotLine}>Forgot your password?</Text>
+          <Button onPress={handleNavigate(ROUTES.APP)}>Login</Button>
+          <Text>or</Text>
+          <Row style={styles.buttonContainer}>
+            <Button
+              theme="social"
+              icon={Facebook}
+              onPress={handleLinkOpening('https://www.facebook.com/')}
+            />
+            <Button
+              theme="social"
+              icon={Twitter}
+              onPress={handleLinkOpening('https://www.twitter.com/')}
+            />
+            <Button
+              theme="social"
+              icon={Linkedin}
+              onPress={handleLinkOpening('https://www.linkedin.com/')}
+            />
+          </Row>
+          <Row style={styles.choiceContainer}>
+            <Text>Don't have an account?</Text>
+            <Button
+              theme="plain"
+              extraStyles={styles.plainButton}
+              onPress={handleNavigate(ROUTES.SIGN_UP)}>
+              Sign Up
+            </Button>
+          </Row>
         </View>
-        <View
-          style={[styles.choiceContainer, {marginBottom: insets.bottom + 20}]}>
-          <TextComponent content="Don't have an account?" />
-          <Button
-            style={styles.primaryColor}
-            onPress={() => {
-              navigation.navigate(ROUTES.SIGN_UP);
-            }}>
-            <TextComponent content="Sign" extraStyles={styles.orangeText} />
-          </Button>
-        </View>
-      </View>
+      </KeyboardAwareScrollView>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 50,
-    paddingHorizontal: 30,
     justifyContent: 'space-around',
-  },
-  screen: {
-    flex: 1,
   },
   image: {
     height: 145,
     width: 100,
     marginBottom: 20,
   },
-  textBtn: {
-    color: COLORS.WHITE,
-    lineHeight: 19,
-  },
-  btnContainer: {
+  buttonContainer: {
     width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  socialBtn: {
-    backgroundColor: COLORS.PRIMARY,
-    borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
-    width: '32%',
-    alignItems: 'center',
   },
   choiceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 10,
   },
-  orangeText: {
-    color: COLORS.ORANGE,
-    textDecorationLine: 'underline',
-  },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
-    width: 'auto',
+  plainButton: {
     marginLeft: 10,
   },
   forgotLine: {
     alignSelf: 'flex-end',
-    marginBottom: 30,
+    marginBottom: 20,
   },
 });

@@ -1,22 +1,22 @@
 import React from 'react';
-import {TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {ROUTES} from 'src/constants';
+import {COLORS} from 'src/constants';
 
-export const LeftButton = () => {
+export const LeftButton = ({extraSource}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.goBack();
-      }}>
-      <Image
-        source={require('src/assets/images/array.png')}
-        style={styles.imgL}
-      />
-      {/* <Icon name="chevron-left" size={30} color={COLORS.GREY_DARK} /> */}
+    <TouchableOpacity onPress={navigation.goBack} style={styles.button}>
+      {extraSource ? (
+        <Image source={extraSource} style={styles.left} />
+      ) : (
+        <Image
+          source={require('src/assets/images/arrow-left.png')}
+          style={styles.left}
+        />
+      )}
     </TouchableOpacity>
   );
 };
@@ -25,35 +25,54 @@ export const RightButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => {
-        navigation.navigate(ROUTES.APP);
-      }}>
+      style={[styles.button, styles.buttonRight]}
+      onPress={navigation.toggleDrawer}>
       <Image
         source={require('src/assets/icons/menu.png')}
-        style={styles.imgR}
+        style={styles.right}
       />
     </TouchableOpacity>
   );
 };
 
-export const RightButtonDISABLED = () => (
-  <TouchableOpacity>
-    <Image source={require('src/assets/icons/menu.png')} style={styles.imgR} />
-  </TouchableOpacity>
-);
-
-export const stylesHeaderText = {
-  fontFamily: 'B612-Regular',
-  fontSize: 18,
-  fontWeight: '400',
-  lineHeight: 22,
+export const headerOptionsFull = {
+  headerStyle: {
+    backgroundColor: COLORS.PRIMARY,
+  },
+  headerLeft: LeftButton,
+  headerRight: RightButton,
+  headerTintColor: COLORS.GREY_DARKER,
+  headerTitleStyle: {
+    fontFamily: 'B612-Regular',
+    fontSize: 18,
+    fontWeight: '400',
+    lineHeight: 22,
+  },
+  headerTitleAlign: 'center',
 };
 
-const styles = StyleSheet.create({
-  imgR: {
-    right: 20,
+export const styles = StyleSheet.create({
+  button: {
+    height: 20,
+    width: 40,
+    justifyContent: 'center',
   },
-  imgL: {
-    left: 10,
+  buttonRight: {
+    width: 50,
+  },
+  right: {
+    right: 0,
+  },
+  left: {
+    left: 30,
+  },
+  headerText: {
+    fontFamily: 'B612-Regular',
+    fontSize: 18,
+    fontWeight: '400',
+    lineHeight: 22,
+  },
+  headerStyle: {
+    backgroundColor: COLORS.PRIMARY,
   },
 });

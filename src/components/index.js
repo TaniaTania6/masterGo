@@ -1,4 +1,5 @@
 export * from './Button';
-export * from './HalfButtons';
-export * from './TextComponent';
+export * from './Text';
 export * from './Input';
+export * from './Row';
+export * from './KeyboardAwareScrollView';

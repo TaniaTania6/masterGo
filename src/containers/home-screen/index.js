@@ -1,67 +1,84 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {TextComponent, Button, HalfButtons} from 'src/components';
-import {default as Left} from 'src/assets/images/btn-images/tel.svg';
+import {Text, Button, Row} from 'src/components';
+import {Phone, Email, Point} from 'src/assets/svg';
 
 import {COLORS} from 'src/constants';
 
-const btnInfo = [
+const buttonInfo = [
   {
-    content1: 'Phone number',
-    content2: '+3746589923',
-    icon: require('src/assets/images/btn-images/tel.png'),
+    title: 'Phone number',
+    phone: '+3746589923',
+    icon: Phone,
   },
   {
-    content1: 'Email',
-    content2: 'conrad@gmail.com',
-    icon: require('src/assets/images/btn-images/email.png'),
+    title: 'Email',
+    phone: 'conrad@gmail.com',
+    icon: Email,
   },
   {
-    content1: 'Completed projects',
-    content2: '248',
-    icon: require('src/assets/images/btn-images/point.png'),
+    title: 'Completed projects',
+    phone: '248',
+    icon: Point,
   },
 ];
-
-const renderDarkBtn = item => {
-  return (
-    <Button style={styles.darkBtn}>
-      {/* <Left width={100} height={100} /> */}
-      <Image source={item.icon} style={styles.btnImg} />
-      <View style={styles.greyLine} />
-      <View style={styles.innerText}>
-        <TextComponent content={item.content1} extraStyles={styles.greyText} />
-        <TextComponent content={item.content2} extraStyles={styles.whiteText} />
-      </View>
-    </Button>
-  );
-};
-
 export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
+  const renderDarkButton = item => {
+    const Icon = item.icon;
+    return (
+      <TouchableOpacity style={styles.button} key={item.title}>
+        <View style={styles.imageContainer}>
+          <Icon width={17} height={17} />
+        </View>
+        <View style={styles.line} />
+        <View style={styles.textWrapper}>
+          <Text fontVariant="p" fontWeight="normal">
+            {item.title}
+          </Text>
+          <Text
+            extraStyles={styles.buttonText}
+            fontVariant="p"
+            fontWeight="normal">
+            {item.phone}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <View style={[styles.whiteBlock, {paddingTop: insets.top + 20}]}>
+      <View style={styles.dataContainer}>
         <Image
-          source={require('src/assets/images/home_profile.png')}
+          source={require('src/assets/images/home-profile.png')}
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <TextComponent
-            content="Jeremías del Pozo"
+          <Text
             extraStyles={styles.name}
-            bigFormat
-          />
-          <TextComponent content="New York • ID: 1120611" />
+            fontVariant="subtitle"
+            fontWeight="medium"
+            title>
+            Jeremías del Pozo
+          </Text>
+          <Text>New York • ID: 1120611</Text>
         </View>
-        <Button style={styles.btnEdit}>
-          <TextComponent content="Edit" extraStyles={styles.orangeText} />
-        </Button>
-        <HalfButtons content1="About Me" content2="Reviews" />
+        <Button theme="plain">Edit</Button>
+        <Row style={styles.buttonsContainer}>
+          <Button
+            extraStyles={styles.choiceButton}
+            extraTextStyles={styles.buttonTitle}
+            theme="small">
+            About Me
+          </Button>
+          <Button theme="small">Reviews</Button>
+        </Row>
       </View>
-      <View style={[styles.greyBlock, {paddingBottom: insets.bottom + 20}]}>
-        {btnInfo.map(item => renderDarkBtn(item))}
+      <View
+        style={[styles.contactsWrapper, {paddingBottom: insets.bottom + 20}]}>
+        {buttonInfo.map(item => renderDarkButton(item))}
       </View>
     </View>
   );
@@ -71,28 +88,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  whiteBlock: {
-    backgroundColor: COLORS.PRIMARY,
-    paddingVertical: '15%',
-    paddingHorizontal: 30,
-    justifyContent: 'space-between',
+  dataContainer: {
     flex: 1,
+    backgroundColor: COLORS.PRIMARY,
+    padding: 30,
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
-  greyBlock: {
-    backgroundColor: COLORS.GREY_DARK,
+  buttonsContainer: {
+    width: '100%',
+  },
+  contactsWrapper: {
+    backgroundColor: COLORS.GREY_DARKER,
     flex: 1,
     paddingHorizontal: 30,
     justifyContent: 'space-between',
-    paddingTop: 40,
+    paddingTop: 30,
   },
-  darkBtn: {
-    backgroundColor: COLORS.GREY_DARK,
+  button: {
+    backgroundColor: COLORS.GREY_DARKER,
     borderWidth: 1,
-    borderColor: COLORS.GREY_LIGHT,
+    borderColor: COLORS.GREY_DARK,
     flexDirection: 'row',
     paddingLeft: 25,
-    paddingVertical: 17,
+    paddingVertical: 15,
   },
   image: {
     width: '35%',
@@ -103,48 +122,29 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   name: {
-    fontSize: 24,
     lineHeight: 28,
     paddingBottom: 5,
   },
-  btnEdit: {
-    backgroundColor: COLORS.PRIMARY,
-    width: 'auto',
+  buttonTitle: {
+    color: COLORS.GREY_DARK,
   },
-  orangeText: {
-    color: COLORS.ORANGE,
-    textDecorationLine: 'underline',
-  },
-  primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
-  },
-  btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  halfBtn: {
-    width: '48%',
-    borderWidth: 1,
-    borderColor: COLORS.BTN_BORDER,
-  },
-  greyText: {
-    color: COLORS.GREY_LIGHT,
-  },
-  whiteText: {
+  buttonText: {
     color: COLORS.WHITE,
   },
-  btnImg: {
-    width: 17,
-    height: 17,
-    alignSelf: 'center',
+  imageContainer: {
+    justifyContent: 'center',
   },
-  greyLine: {
+  line: {
     width: 1,
-    backgroundColor: COLORS.PAGINATION_POINT_ACTIVE,
+    backgroundColor: COLORS.GREY_LIGHT,
     marginHorizontal: 25,
   },
-  innerText: {
+  textWrapper: {
     alignItems: 'flex-start',
+  },
+  choiceButton: {
+    borderWidth: 1,
+    borderColor: COLORS.BUTTON_BORDER,
+    backgroundColor: COLORS.TRANSPARENT,
   },
 });
